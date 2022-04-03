@@ -4,10 +4,78 @@
 {% block content %}
 {% set name='baz' %}
 
+
 <h1>Sample Page</h1>
 
 An algorithm engineer CAN do frontend, but VERY VERY UGLY.
 
+<!-- <script src="https://cdn.jsdelivr.net/npm/cnchar/cnchar.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/cnchar-poly/cnchar.poly.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/cnchar-order/cnchar.order.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/cnchar-trad/cnchar.trad.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/cnchar-draw/cnchar.draw.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/cnchar-idiom/cnchar.idiom.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/cnchar-xhy/cnchar.xhy.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/cnchar-radical/cnchar.radical.min.js"></script>
 
+<script>
+    cnchar.draw('花好月圆')
+</script>         -->
+
+<script src="https://cdn.jsdelivr.net/npm/hanzi-writer@3.2/dist/hanzi-writer.min.js"></script>
+
+<p id="target0"></p>
+<p id="target1"></p>
+<p id="target2"></p>
+<p id="target3"></p>
+
+<script>
+    function renderFanningStrokes(target, strokes) {
+    var svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+    svg.style.width = '75px';
+    svg.style.height = '75px';
+    svg.style.border = '1px solid #EEE'
+    svg.style.marginRight = '3px'
+    target.appendChild(svg);
+    var group = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+
+    // set the transform property on the g element so the character renders at 75x75
+    var transformData = HanziWriter.getScalingTransform(75, 75);
+    group.setAttributeNS(null, 'transform', transformData.transform);
+    svg.appendChild(group);
+
+    strokes.forEach(function(strokePath) {
+        var path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+        path.setAttributeNS(null, 'd', strokePath);
+        // style the character paths
+        path.style.fill = '#555';
+        group.appendChild(path);
+    });
+    }
+
+    function renderStrokesByOrder(chars, orders, id) {
+        var target = document.getElementById(id);
+        function renderChar (i) {
+            var thisOrders = orders[i]
+            var id = 'target' + i
+            var charData = HanziWriter.loadCharacterData(chars[i]).then(function(charData) {
+                console.log(charData)
+                var target = document.getElementById(id);
+                var strokes = []
+                for (var i = 0; i < charData.strokes.length; i++) {
+                    if(thisOrders.includes(i)) {
+                        strokes.push(charData.strokes[i])
+                    }
+                }
+                renderFanningStrokes(target, strokes);
+            });            
+        }
+        for (var i = 0; i < chars.length; i++) {
+            renderChar(i)
+        }
+    }
+
+    renderStrokesByOrder("花好月圆", [[0,1,2,3], [0,1,2,3], [2,3], [2,3,4]], 'target')
+</script>
 
 {% endblock %}
