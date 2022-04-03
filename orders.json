@@ -1,0 +1,136 @@
+{
+    "横折折撇": {
+        "shape": "㇋",
+        "letter": "a"
+    },
+    "竖弯": {
+        "shape": "㇄",
+        "letter": "b"
+    },
+    "横折": {
+        "shape": "𠃍",
+        "letter": "c"
+    },
+    "点2": {
+        "shape": "㇀",
+        "letter": "d"
+    },
+    "横斜钩": {
+        "shape": "⺄",
+        "letter": "o"
+    },
+    "横": {
+        "shape": "一",
+        "letter": "j"
+    },
+    "捺": {
+        "shape": "㇏",
+        "letter": "l"
+    },
+    "横折钩": {
+        "shape": "𠃌",
+        "letter": "r"
+    },
+    "竖": {
+        "shape": "丨",
+        "letter": "f"
+    },
+    "竖钩": {
+        "shape": "亅",
+        "letter": "g"
+    },
+    "点": {
+        "shape": "丶",
+        "letter": "k"
+    },
+    "撇": {
+        "shape": "丿",
+        "letter": "s"
+    },
+    "撇折": {
+        "shape": "𠃋",
+        "letter": "n"
+    },
+    "竖折撇": {
+        "shape": "ㄣ",
+        "letter": "x",
+        "sameLetterTo": "竖折折"
+    },
+    "竖折折": {
+        "shape": "𠃑",
+        "letter": "x",
+        "sameLetterTo": "竖折撇"
+    },
+    "横折折折钩": {
+        "shape": "𠄎",
+        "letter": "w",
+        "sameLetterTo": "横撇弯钩"
+    },
+    "横撇弯钩": {
+        "shape": "㇌",
+        "letter": "w",
+        "sameLetterTo": "横折折折钩"
+    },
+    "竖折折钩": {
+        "shape": "㇉",
+        "letter": "z"
+    },
+    "提": {
+        "shape": "㇀",
+        "letter": "i"
+    },
+    "弯钩": {
+        "shape": "㇁",
+        "letter": "t"
+    },
+    "斜钩": {
+        "shape": "㇂",
+        "letter": "y",
+        "sameLetterTo": "卧钩"
+    },
+    "卧钩": {
+        "shape": "㇃",
+        "letter": "y",
+        "sameLetterTo": "斜钩"
+    },
+    "横折折": {
+        "shape": "㇅",
+        "letter": "v",
+        "sameLetterTo": "横折弯"
+    },
+    "横折弯": {
+        "shape": "㇍",
+        "letter": "v",
+        "sameLetterTo": "横折折"
+    },
+    "横撇": {
+        "shape": "㇇",
+        "letter": "e",
+        "sameLetterTo": "横钩"
+    },
+    "横钩": {
+        "shape": "乛",
+        "letter": "e",
+        "sameLetterTo": "横撇"
+    },
+    "横折提": {
+        "shape": "㇊",
+        "letter": "p"
+    },
+    "横折折折": {
+        "shape": "㇎",
+        "letter": "q"
+    },
+    "竖提": {
+        "shape": "𠄌",
+        "letter": "h"
+    },
+    "撇点": {
+        "shape": "𡿨",
+        "letter": "m"
+    },
+    "竖弯钩": {
+        "shape": "乚",
+        "letter": "u"
+    }
+}
