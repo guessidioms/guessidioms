@@ -22,7 +22,7 @@
 <script>
 
     var clickedStrokes = []
-    var idiom = "花好月圆"
+    var idiom = "{{ code }}"
     var placeholder = "chars_placeholder"
 
     function renderFanningStrokes(target, strokes) {
@@ -95,6 +95,10 @@
     }
 
     renderMatched(idiom, clickedStrokes, placeholder)
+
+    function generateUrl() {
+        var input = document.getElementById("gen_code_input")
+    }
 
 </script>
 
