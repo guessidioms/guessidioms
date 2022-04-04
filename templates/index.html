@@ -5,20 +5,26 @@
 {% set name='baz' %}
 
 
-<h1>Sample Page</h1>
+<h1>Money 猜成语</h1>
 
-An algorithm engineer CAN do frontend, but VERY VERY UGLY.
 
+点击笔画，猜成语！
+
+<p>
+    <table>
+        <tr id="chars_placeholder"></tr>
+    </table>    
+</p>
 
 <script src="https://cdn.jsdelivr.net/npm/hanzi-writer@3.2/dist/hanzi-writer.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/cnchar-all/cnchar.all.min.js"></script>
 
-<p id="target0"></p>
-<p id="target1"></p>
-<p id="target2"></p>
-<p id="target3"></p>
-
 <script>
+
+    var clickedStrokes = []
+    var idiom = "花好月圆"
+    var placeholder = "chars_placeholder"
+
     function renderFanningStrokes(target, strokes) {
         var svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
         svg.style.width = '75px';
@@ -44,17 +50,16 @@ An algorithm engineer CAN do frontend, but VERY VERY UGLY.
 
     function renderStrokes(chars, strokes, id) {
         var target = document.getElementById(id);
-        function renderChar (i) {
+        function renderChar (i, cellId) {
             var thisStrokes = strokes[i]
             var thisChar = chars[i]
-            var id = 'target' + i
             var strokeName = cnchar.stroke(thisChar, 'order')[0];
             HanziWriter.loadCharacterData(thisChar).then(function(charData) {
                 if(strokeName.length != charData.strokes.length) {
                     alert("inner data mismatch, stroke name length != char data length")
                     return
                 }
-                var target = document.getElementById(id);
+                var target = document.getElementById(cellId);
                 var toRender = []
                 for (var i = 0; i < charData.strokes.length; i++) {
                     if(thisStrokes.includes(strokeName[i])) {
@@ -64,12 +69,74 @@ An algorithm engineer CAN do frontend, but VERY VERY UGLY.
                 renderFanningStrokes(target, toRender);
             });            
         }
+        while(target.firstChild) {
+            target.removeChild(target.firstChild)
+        }
         for (var i = 0; i < chars.length; i++) {
-            renderChar(i)
+            var cell = document.createElement("td")
+            var cellId = id + "_" + i
+            cell.setAttribute("id", cellId)
+            target.appendChild(cell)
+            renderChar(i, cellId)
         }
     }
 
-    renderStrokes("花好月圆", ['jf', 'jf', 'jf', 'jf'], 'target')
+    function renderMatched(chars, strokes, id) {
+        var strokesEachChar = []
+        for(var i = 0; i < chars.length; i++) {
+            strokesEachChar.push(strokes)
+        }
+        renderStrokes(chars, strokesEachChar, id)
+    }
+
+    function flashChars(stroke) {
+        clickedStrokes.push(stroke)
+        renderMatched(idiom, clickedStrokes, placeholder)
+    }
+
+    renderMatched(idiom, clickedStrokes, placeholder)
+
 </script>
+
+<p>
+    <button onclick='flashChars("k")'> "点 丶" </button> 
+    <button onclick='flashChars("d")'> "点（反向） ㇀" </button> 
+    <button onclick='flashChars("j")'> "横 一" </button> 
+    <button onclick='flashChars("f")'> "竖 丨" </button> 
+    <button onclick='flashChars("s")'> "撇 丿" </button> 
+    <button onclick='flashChars("l")'> "捺 ㇏" </button> 
+    <button onclick='flashChars("i")'> "提 ㇀" </button>     
+</p>
+
+<p>
+    <button onclick='flashChars("b")'> "竖弯 ㇄" </button> 
+    <button onclick='flashChars("c")'> "横折 𠃍" </button> 
+    <button onclick='flashChars("g")'> "竖钩 亅" </button> 
+    <button onclick='flashChars("n")'> "撇折 𠃋" </button> 
+    <button onclick='flashChars("t")'> "弯钩 ㇁" </button>     
+</p>
+
+<p>
+    <button onclick='flashChars("y")'> "斜钩 ㇂ 卧钩 ㇃" </button> 
+    <button onclick='flashChars("e")'> "横撇 ㇇ 横钩 乛" </button> 
+    <button onclick='flashChars("h")'> "竖提 𠄌" </button> 
+    <button onclick='flashChars("m")'> "撇点 𡿨" </button>     
+</p>
+
+<p>
+    <button onclick='flashChars("o")'> "横斜钩 ⺄" </button> 
+    <button onclick='flashChars("r")'> "横折钩 𠃌" </button> 
+    <button onclick='flashChars("x")'> "竖折撇 ㄣ 竖折折 𠃑" </button> 
+    <button onclick='flashChars("v")'> "横折折 ㇅ 横折弯 ㇍" </button>     
+    <button onclick='flashChars("p")'> "横折提 ㇊" </button> 
+</p>
+
+<p>
+    <button onclick='flashChars("u")'> "竖弯钩 乚 </button> 
+    <button onclick='flashChars("a")'> "横折折撇 ㇋" </button> 
+    <button onclick='flashChars("z")'> "竖折折钩 ㇉" </button> 
+    <button onclick='flashChars("q")'> "横折折折 ㇎" </button> 
+    <button onclick='flashChars("w")'> "横撇弯钩 ㇌ 横折折折钩 𠄎" </button>     
+</p>
 
 {% endblock %}
