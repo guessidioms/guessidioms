@@ -1,4 +1,8 @@
 # -*- coding: utf-8 -*-
+
+from __future__ import print_function
+from __future__ import division
+
 import os
 import random
 from flask import Flask, render_template, flash, redirect, url_for, Markup
@@ -8,7 +12,8 @@ app = Flask(__name__)
 app.secret_key = os.getenv('SECRET_KEY', 'secret string')
 app.jinja_env.trim_blocks = True
 app.jinja_env.lstrip_blocks = True
-with open("txt/idioms_reviewed.txt", "r") as fp:
+
+with open("txt/idioms_reviewed.txt", "rb") as fp:
     idioms = fp.readlines()
 idioms = [i.strip() for i in idioms]
 idioms_length = len(idioms)
