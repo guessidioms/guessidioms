@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 import os
-import base64
+import random
 from flask import Flask, render_template, flash, redirect, url_for, Markup
 import base64
 
@@ -8,10 +8,16 @@ app = Flask(__name__)
 app.secret_key = os.getenv('SECRET_KEY', 'secret string')
 app.jinja_env.trim_blocks = True
 app.jinja_env.lstrip_blocks = True
+with open("txt/idioms_reviewed.txt", "r") as fp:
+    idioms = fp.readlines()
+idioms = [i.strip() for i in idioms]
+idioms_length = len(idioms)
 
 @app.route('/')
 def index():
-    return render_template('index.html', code="花好月圆")
+    random_index = random.randint(0, idioms_length - 1)
+    idiom = idioms[random_index].decode("utf-8")
+    return render_template('index.html', code=idiom)
 
 @app.route('/<code>')
 def guess(code):
