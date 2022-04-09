@@ -20,8 +20,44 @@
 
 <script>
 
+    function codeToWord(code) {
+        var bytes = []
+        var n = code.length
+        for(var i = 0; i < n; i += 2) {
+            var x = code.substr(i, 2)
+            bytes.push(parseInt(x, 16))
+        }
+        return new TextDecoder().decode(Uint8Array.from(bytes))
+    }
+
+    function wordToCode(word) {
+        var codes = []
+        var bytes = new TextEncoder().encode(word)
+        for(const x of bytes) {
+            codes.push(("0" + x.toString(16)).slice(-2))
+        }
+        return codes.join("")
+    }
+
+    async function getWordFromUrl() {
+        var code = window.location.pathname
+        if(code && code.length > 1) {
+            return codeToWord(code.substr(1))
+        } else {
+            var idiomsResponse = await fetch('static/idioms_reviewed.txt')
+            if (idiomsResponse.status !== 200) {
+                console.log('Fail to fetch idioms, Status Code: ' + idiomsResponse.status);
+            }
+            var idiomsData = await idiomsResponse.text()
+            var idiomsArray = idiomsData.split("\n")
+            var index = Math.floor(Math.random() * idiomsArray.length)
+            idiom = idiomsArray[index]
+        }
+        renderMatched(idiom, clickedStrokes, placeholder)
+    }
+
     var clickedStrokes = []
-    var idiom = "{{ code }}"
+    var idiom = getWordFromUrl()
     var placeholder = "chars_placeholder"
 
     function renderFanningStrokes(target, strokes) {
@@ -93,11 +129,10 @@
         renderMatched(idiom, clickedStrokes, placeholder)
     }
 
-    renderMatched(idiom, clickedStrokes, placeholder)
-
     function generateUrl() {
         var input = document.getElementById("gen_code_input")
     }
+
     function evalGuess() {
         var guess=document.getElementById("guess").value;
         if (guess === idiom) {
