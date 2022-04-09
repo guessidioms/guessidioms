@@ -1,8 +1,20 @@
-{% extends 'base.html' %}
-{% from 'macros.html' import qux %}
+<!DOCTYPE html>
+<html>
 
-{% block content %}
-{% set name='baz' %}
+<head>
+        <meta charset="utf-8">
+        <title>Money 猜成语</title>
+        <link rel="icon" type="image/x-icon" href="/moneyword/static/favicon.ico">
+            <link rel="stylesheet" type="text/css" href="/moneyword/static/style.css">
+</head>
+
+<body>
+
+    <nav>
+        <ul><li><a href="/moneyword/">Home</a></li></ul>
+    </nav>
+
+    <main>
 
 
 <h1>Money 猜成语</h1>
@@ -192,4 +204,12 @@ GUESS:<input type="text" id="guess" name="txt" minlength="4" maxlength="8" size=
     <button onclick='flashChars("w")'> "横撇弯钩 ㇌ 横折折折钩 𠄎" </button>     
 </p>
 
-{% endblock %}
+    </main>
+
+    <footer>
+            <small> &copy; 2022 plus2047 </small>
+    </footer>
+
+
+</body>
+</html>

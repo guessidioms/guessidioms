@@ -12,6 +12,7 @@ app = Flask(__name__)
 app.secret_key = os.getenv('SECRET_KEY', 'secret string')
 app.jinja_env.trim_blocks = True
 app.jinja_env.lstrip_blocks = True
+app.config.from_pyfile("setting.py")
 
 # with open("txt/idioms_reviewed.txt", "rb") as fp:
 #     idioms = fp.readlines()

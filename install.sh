@@ -1,1 +1,1 @@
-pip install flask python-dotenv
+pip install flask python-dotenv Frozen-Flask
