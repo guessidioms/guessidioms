@@ -35,6 +35,7 @@ http://127.0.0.1:7890/
 4. Support generate url link for specified idiom
 5. When input stroke, do not flash the page
 6. Stroke button turns to grey when it is clicked
+7. Add data tracking function, to record user's daily guess results like wordle
 
 ## Important library
 
