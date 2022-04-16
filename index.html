@@ -17,191 +17,72 @@
     <main>
 
 
-<h1>Money 猜成语</h1>
+<h1 align="center"> Money 猜成语 </h1>
 
+<p align="center"> 点击笔画，猜成语！</p>
 
-点击笔画，猜成语！
 <p>
-    <table>
-        <tr id="chars_placeholder"></tr>
-    </table>    
+    <center>
+        <table id="chars_table">
+            <tr id="chars_placeholder"></tr>
+            <tr id="chars_guess1"></tr>
+            <tr id="chars_guess2"></tr>
+            <tr id="chars_guess3"></tr>
+            <tr id="chars_guess4"></tr>
+            <tr id="chars_guess5"></tr>
+        </table>
+    </center>
 </p>
 
 <script src="https://cdn.jsdelivr.net/npm/hanzi-writer@3.2/dist/hanzi-writer.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/cnchar-all/cnchar.all.min.js"></script>
+<script src="static/main.js"></script>
 
-<script>
-
-    function codeToWord(code) {
-        var bytes = []
-        var n = code.length
-        for(var i = 0; i < n; i += 2) {
-            var x = code.substr(i, 2)
-            bytes.push(parseInt(x, 16))
-        }
-        return new TextDecoder().decode(Uint8Array.from(bytes))
-    }
-
-    function wordToCode(word) {
-        var codes = []
-        var bytes = new TextEncoder().encode(word)
-        for(const x of bytes) {
-            codes.push(("0" + x.toString(16)).slice(-2))
-        }
-        return codes.join("")
-    }
-
-    async function getWordFromUrl() {
-        var searchStr = window.location.search
-        var params = new URLSearchParams(searchStr)
-        if(params.get("code")) {
-            idiom = codeToWord(params.get("code"))
-        } else {
-            var idiomsResponse = await fetch('static/idioms_reviewed.txt')
-            if (idiomsResponse.status !== 200) {
-                console.log('Fail to fetch idioms, Status Code: ' + idiomsResponse.status);
-            }
-            var idiomsData = await idiomsResponse.text()
-            var idiomsArray = idiomsData.split("\n")
-            var index = Math.floor(Math.random() * idiomsArray.length)
-            idiom = idiomsArray[index]
-        }
-        renderMatched(idiom, clickedStrokes, placeholder)
-    }
-
-    var clickedStrokes = []
-    var idiom = ""
-    var placeholder = "chars_placeholder"
-    getWordFromUrl()
-
-    function renderFanningStrokes(target, strokes) {
-        var svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
-        svg.style.width = '75px';
-        svg.style.height = '75px';
-        svg.style.border = '1px solid #EEE'
-        svg.style.marginRight = '3px'
-        target.appendChild(svg);
-        var group = document.createElementNS('http://www.w3.org/2000/svg', 'g');
-
-        // set the transform property on the g element so the character renders at 75x75
-        var transformData = HanziWriter.getScalingTransform(75, 75);
-        group.setAttributeNS(null, 'transform', transformData.transform);
-        svg.appendChild(group);
-
-        strokes.forEach(function(strokePath) {
-            var path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
-            path.setAttributeNS(null, 'd', strokePath);
-            // style the character paths
-            path.style.fill = '#555';
-            group.appendChild(path);
-        });
-    }
-
-    function renderStrokes(chars, strokes, id) {
-        var target = document.getElementById(id);
-        function renderChar (i, cellId) {
-            var thisStrokes = strokes[i]
-            var thisChar = chars[i]
-            var strokeName = cnchar.stroke(thisChar, 'order')[0];
-            HanziWriter.loadCharacterData(thisChar).then(function(charData) {
-                if(strokeName.length != charData.strokes.length) {
-                    alert("inner data mismatch, stroke name length != char data length")
-                    return
-                }
-                var target = document.getElementById(cellId);
-                var toRender = []
-                for (var i = 0; i < charData.strokes.length; i++) {
-                    if(thisStrokes.includes(strokeName[i])) {
-                        toRender.push(charData.strokes[i])
-                    }
-                }
-                renderFanningStrokes(target, toRender);
-            });            
-        }
-        while(target.firstChild) {
-            target.removeChild(target.firstChild)
-        }
-        for (var i = 0; i < chars.length; i++) {
-            var cell = document.createElement("td")
-            var cellId = id + "_" + i
-            cell.setAttribute("id", cellId)
-            target.appendChild(cell)
-            renderChar(i, cellId)
-        }
-    }
-
-    function renderMatched(chars, strokes, id) {
-        var strokesEachChar = []
-        for(var i = 0; i < chars.length; i++) {
-            strokesEachChar.push(strokes)
-        }
-        renderStrokes(chars, strokesEachChar, id)
-    }
-
-    function flashChars(stroke) {
-        clickedStrokes.push(stroke)
-        renderMatched(idiom, clickedStrokes, placeholder)
-    }
-
-    function generateUrl() {
-        var input = document.getElementById("gen_code_input")
-    }
-
-    function evalGuess() {
-        var guess=document.getElementById("guess").value;
-        if (guess === idiom) {
-            window.alert("Bingo!!!! Guess NUM:"+clickedStrokes.length)
-        } else {
-            window.alert("Wrong! please try again!")
-        }
-    }
-
-</script>
-<p>
-GUESS:<input type="text" id="guess" name="txt" minlength="4" maxlength="8" size="16">
-    <input type="button" value="submit" onclick="evalGuess()">
-
-
-</p>
-<p>
-    <button onclick='flashChars("k")'> "点 丶" </button> 
-    <button onclick='flashChars("d")'> "点（反向） ㇀" </button> 
-    <button onclick='flashChars("j")'> "横 一" </button> 
-    <button onclick='flashChars("f")'> "竖 丨" </button> 
-    <button onclick='flashChars("s")'> "撇 丿" </button> 
-    <button onclick='flashChars("l")'> "捺 ㇏" </button> 
-    <button onclick='flashChars("i")'> "提 ㇀" </button>     
+<p align="center">
+竞猜：
+<input type="text" id="guess" name="txt" minlength="4" maxlength="8" size="16">
+<input type="button" value="提交" onclick="evalGuess()">
 </p>
 
-<p>
-    <button onclick='flashChars("b")'> "竖弯 ㇄" </button> 
-    <button onclick='flashChars("c")'> "横折 𠃍" </button> 
-    <button onclick='flashChars("g")'> "竖钩 亅" </button> 
-    <button onclick='flashChars("n")'> "撇折 𠃋" </button> 
-    <button onclick='flashChars("t")'> "弯钩 ㇁" </button>     
+<p align="center">
+    <button onclick='addStrokeAndRefresh("k")'> "点 丶" </button> 
+    <button onclick='addStrokeAndRefresh("d")'> "点（反向） ㇀" </button> 
+    <button onclick='addStrokeAndRefresh("j")'> "横 一" </button> 
+    <button onclick='addStrokeAndRefresh("f")'> "竖 丨" </button> 
+    <button onclick='addStrokeAndRefresh("s")'> "撇 丿" </button> 
+    <button onclick='addStrokeAndRefresh("l")'> "捺 ㇏" </button> 
+    <button onclick='addStrokeAndRefresh("i")'> "提 ㇀" </button>     
 </p>
 
-<p>
-    <button onclick='flashChars("y")'> "斜钩 ㇂ 卧钩 ㇃" </button> 
-    <button onclick='flashChars("e")'> "横撇 ㇇ 横钩 乛" </button> 
-    <button onclick='flashChars("h")'> "竖提 𠄌" </button> 
-    <button onclick='flashChars("m")'> "撇点 𡿨" </button>     
+<p align="center">
+    <button onclick='addStrokeAndRefresh("b")'> "竖弯 ㇄" </button> 
+    <button onclick='addStrokeAndRefresh("c")'> "横折 𠃍" </button> 
+    <button onclick='addStrokeAndRefresh("g")'> "竖钩 亅" </button> 
+    <button onclick='addStrokeAndRefresh("n")'> "撇折 𠃋" </button> 
+    <button onclick='addStrokeAndRefresh("t")'> "弯钩 ㇁" </button>     
 </p>
 
-<p>
-    <button onclick='flashChars("o")'> "横斜钩 ⺄" </button> 
-    <button onclick='flashChars("r")'> "横折钩 𠃌" </button> 
-    <button onclick='flashChars("x")'> "竖折撇 ㄣ 竖折折 𠃑" </button> 
-    <button onclick='flashChars("v")'> "横折折 ㇅ 横折弯 ㇍" </button>     
-    <button onclick='flashChars("p")'> "横折提 ㇊" </button> 
+<p align="center">
+    <button onclick='addStrokeAndRefresh("y")'> "斜钩 ㇂ 卧钩 ㇃" </button> 
+    <button onclick='addStrokeAndRefresh("e")'> "横撇 ㇇ 横钩 乛" </button> 
+    <button onclick='addStrokeAndRefresh("h")'> "竖提 𠄌" </button> 
+    <button onclick='addStrokeAndRefresh("m")'> "撇点 𡿨" </button>     
 </p>
 
-<p>
-    <button onclick='flashChars("u")'> "竖弯钩 乚 </button> 
-    <button onclick='flashChars("a")'> "横折折撇 ㇋" </button> 
-    <button onclick='flashChars("z")'> "竖折折钩 ㇉" </button> 
-    <button onclick='flashChars("q")'> "横折折折 ㇎" </button> 
-    <button onclick='flashChars("w")'> "横撇弯钩 ㇌ 横折折折钩 𠄎" </button>     
+<p align="center">
+    <button onclick='addStrokeAndRefresh("o")'> "横斜钩 ⺄" </button> 
+    <button onclick='addStrokeAndRefresh("r")'> "横折钩 𠃌" </button> 
+    <button onclick='addStrokeAndRefresh("x")'> "竖折撇 ㄣ 竖折折 𠃑" </button> 
+    <button onclick='addStrokeAndRefresh("v")'> "横折折 ㇅ 横折弯 ㇍" </button>     
+    <button onclick='addStrokeAndRefresh("p")'> "横折提 ㇊" </button> 
+</p>
+
+<p align="center">
+    <button onclick='addStrokeAndRefresh("u")'> "竖弯钩 乚 </button> 
+    <button onclick='addStrokeAndRefresh("a")'> "横折折撇 ㇋" </button> 
+    <button onclick='addStrokeAndRefresh("z")'> "竖折折钩 ㇉" </button> 
+    <button onclick='addStrokeAndRefresh("q")'> "横折折折 ㇎" </button> 
+    <button onclick='addStrokeAndRefresh("w")'> "横撇弯钩 ㇌ 横折折折钩 𠄎" </button>     
 </p>
 
     </main>
