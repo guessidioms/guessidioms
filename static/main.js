@@ -3,6 +3,8 @@ var idiom = ""
 var placeholder = "chars_placeholder"
 var currGuess = 0
 const maxGuess = 5
+const highColor = "#FF4500"
+const defaultColor = "#555"
 getWordFromUrl().then(renderGuess(4, maxGuess))
 
 function codeToWord(code) {
@@ -57,7 +59,7 @@ function fillInCellWithSvg(cell) {
     return svg
 }
 
-function renderFanningStrokes(target, strokes) {
+function renderFanningStrokes(target, strokes, colors) {
     var svg = fillInCellWithSvg(target)
     var group = document.createElementNS('http://www.w3.org/2000/svg', 'g');
     svg.appendChild(group);
@@ -66,16 +68,17 @@ function renderFanningStrokes(target, strokes) {
     var transformData = HanziWriter.getScalingTransform(75, 75);
     group.setAttributeNS(null, 'transform', transformData.transform);
 
-    strokes.forEach(function(strokePath) {
+    for (var i = 0; i < strokes.length; i++) {
         var path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
-        path.setAttributeNS(null, 'd', strokePath);
+        path.setAttributeNS(null, 'd', strokes[i]);
         // style the character paths
-        path.style.fill = '#555';
+        path.style.fill = colors[i];
         group.appendChild(path);
-    });
+
+    }
 }
 
-function renderStrokes(chars, strokes, id) {
+function renderStrokes(chars, strokes, id, matchedColor = null, unmatchedColor = null) {
     var target = document.getElementById(id);
     function renderChar (i, cellId) {
         var thisStrokes = strokes[i]
@@ -87,13 +90,21 @@ function renderStrokes(chars, strokes, id) {
                 return
             }
             var target = document.getElementById(cellId);
-            var toRender = []
+            var strokes = []
+            var colors = []
             for (var i = 0; i < charData.strokes.length; i++) {
-                if(thisStrokes.includes(strokeName[i])) {
-                    toRender.push(charData.strokes[i])
+                var thisStroke = charData.strokes[i]
+                var strokeMatched = thisStrokes.includes(strokeName[i])
+                if(strokeMatched && matchedColor) {
+                    strokes.push(thisStroke)
+                    colors.push(matchedColor)
+                }
+                if(!strokeMatched && unmatchedColor){
+                    strokes.push(thisStroke)
+                    colors.push(unmatchedColor)
                 }
             }
-            renderFanningStrokes(target, toRender);
+            renderFanningStrokes(target, strokes, colors);
         });            
     }
     while(target.firstChild) {
@@ -108,17 +119,19 @@ function renderStrokes(chars, strokes, id) {
     }
 }
 
-function renderMatchedStrokes(chars, strokes, id) {
+function renderMatchedStrokes(chars, strokes, id, matchedColor = null, unmatchedColor = null) {
     var strokesEachChar = []
     for(var i = 0; i < chars.length; i++) {
         strokesEachChar.push(strokes)
     }
-    renderStrokes(chars, strokesEachChar, id)
+    renderStrokes(chars, strokesEachChar, id, matchedColor, unmatchedColor)
 }
 
-function addStrokeAndRefresh(stroke) {
+function addStrokeAndRefresh(id, stroke) {
+    var btn = document.getElementById(id)
+    btn.style.backgroundColor = "#7FFFD4"
     clickedStrokes.push(stroke)
-    renderMatchedStrokes(idiom, clickedStrokes, placeholder)
+    renderMatchedStrokes(idiom, clickedStrokes, placeholder, matchedColor = defaultColor)
 }
 
 function evalGuess() {
@@ -131,7 +144,7 @@ function evalGuess() {
             window.alert("已达到最大猜测次数！")
         } else {
             var guessId = "chars_guess" + currGuess
-            renderMatchedStrokes(guess, clickedStrokes, guessId)
+            renderMatchedStrokes(guess, clickedStrokes, guessId, highColor, defaultColor)
         }
     }
 }

@@ -37,52 +37,59 @@
 <script src="https://cdn.jsdelivr.net/npm/hanzi-writer@3.2/dist/hanzi-writer.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/cnchar-all/cnchar.all.min.js"></script>
 <script src="static/main.js"></script>
+<script src="static/generate_url.js"></script>
 
 <p align="center">
-竞猜：
-<input type="text" id="guess" name="txt" minlength="4" maxlength="8" size="16">
-<input type="button" value="提交" onclick="evalGuess()">
+    竞猜：
+    <input type="text" id="guess" name="txt" minlength="4" maxlength="8" size="16">
+    <input type="button" value="提交" onclick="evalGuess()">
 </p>
 
 <p align="center">
-    <button onclick='addStrokeAndRefresh("k")'> "点 丶" </button> 
-    <button onclick='addStrokeAndRefresh("d")'> "点（反向） ㇀" </button> 
-    <button onclick='addStrokeAndRefresh("j")'> "横 一" </button> 
-    <button onclick='addStrokeAndRefresh("f")'> "竖 丨" </button> 
-    <button onclick='addStrokeAndRefresh("s")'> "撇 丿" </button> 
-    <button onclick='addStrokeAndRefresh("l")'> "捺 ㇏" </button> 
-    <button onclick='addStrokeAndRefresh("i")'> "提 ㇀" </button>     
+    <button onclick='addStrokeAndRefresh("btn_k", "k")' id="btn_k"> "点 丶" </button> 
+    <button onclick='addStrokeAndRefresh("btn_d", "d")' id="btn_d"> "点（反向） ㇀" </button> 
+    <button onclick='addStrokeAndRefresh("btn_j", "j")' id="btn_j"> "横 一" </button> 
+    <button onclick='addStrokeAndRefresh("btn_f", "f")' id="btn_f"> "竖 丨" </button> 
+    <button onclick='addStrokeAndRefresh("btn_s", "s")' id="btn_s"> "撇 丿" </button> 
+    <button onclick='addStrokeAndRefresh("btn_l", "l")' id="btn_l"> "捺 ㇏" </button> 
+    <button onclick='addStrokeAndRefresh("btn_i", "i")' id="btn_i"> "提 ㇀" </button>     
 </p>
 
 <p align="center">
-    <button onclick='addStrokeAndRefresh("b")'> "竖弯 ㇄" </button> 
-    <button onclick='addStrokeAndRefresh("c")'> "横折 𠃍" </button> 
-    <button onclick='addStrokeAndRefresh("g")'> "竖钩 亅" </button> 
-    <button onclick='addStrokeAndRefresh("n")'> "撇折 𠃋" </button> 
-    <button onclick='addStrokeAndRefresh("t")'> "弯钩 ㇁" </button>     
+    <button onclick='addStrokeAndRefresh("btn_b", "b")' id="btn_b"> "竖弯 ㇄" </button> 
+    <button onclick='addStrokeAndRefresh("btn_c", "c")' id="btn_c"> "横折 𠃍" </button> 
+    <button onclick='addStrokeAndRefresh("btn_g", "g")' id="btn_g"> "竖钩 亅" </button> 
+    <button onclick='addStrokeAndRefresh("btn_n", "n")' id="btn_n"> "撇折 𠃋" </button> 
+    <button onclick='addStrokeAndRefresh("btn_t", "t")' id="btn_t"> "弯钩 ㇁" </button>     
 </p>
 
 <p align="center">
-    <button onclick='addStrokeAndRefresh("y")'> "斜钩 ㇂ 卧钩 ㇃" </button> 
-    <button onclick='addStrokeAndRefresh("e")'> "横撇 ㇇ 横钩 乛" </button> 
-    <button onclick='addStrokeAndRefresh("h")'> "竖提 𠄌" </button> 
-    <button onclick='addStrokeAndRefresh("m")'> "撇点 𡿨" </button>     
+    <button onclick='addStrokeAndRefresh("btn_y", "y")' id="btn_y"> "斜钩 ㇂ 卧钩 ㇃" </button> 
+    <button onclick='addStrokeAndRefresh("btn_e", "e")' id="btn_e"> "横撇 ㇇ 横钩 乛" </button> 
+    <button onclick='addStrokeAndRefresh("btn_h", "h")' id="btn_h"> "竖提 𠄌" </button> 
+    <button onclick='addStrokeAndRefresh("btn_m", "m")' id="btn_m"> "撇点 𡿨" </button>     
 </p>
 
 <p align="center">
-    <button onclick='addStrokeAndRefresh("o")'> "横斜钩 ⺄" </button> 
-    <button onclick='addStrokeAndRefresh("r")'> "横折钩 𠃌" </button> 
-    <button onclick='addStrokeAndRefresh("x")'> "竖折撇 ㄣ 竖折折 𠃑" </button> 
-    <button onclick='addStrokeAndRefresh("v")'> "横折折 ㇅ 横折弯 ㇍" </button>     
-    <button onclick='addStrokeAndRefresh("p")'> "横折提 ㇊" </button> 
+    <button onclick='addStrokeAndRefresh("btn_o", "o")' id="btn_o"> "横斜钩 ⺄" </button> 
+    <button onclick='addStrokeAndRefresh("btn_r", "r")' id="btn_r"> "横折钩 𠃌" </button> 
+    <button onclick='addStrokeAndRefresh("btn_x", "x")' id="btn_x"> "竖折撇 ㄣ 竖折折 𠃑" </button> 
+    <button onclick='addStrokeAndRefresh("btn_v", "v")' id="btn_v"> "横折折 ㇅ 横折弯 ㇍" </button>     
+    <button onclick='addStrokeAndRefresh("btn_p", "p")' id="btn_p"> "横折提 ㇊" </button> 
 </p>
 
 <p align="center">
-    <button onclick='addStrokeAndRefresh("u")'> "竖弯钩 乚 </button> 
-    <button onclick='addStrokeAndRefresh("a")'> "横折折撇 ㇋" </button> 
-    <button onclick='addStrokeAndRefresh("z")'> "竖折折钩 ㇉" </button> 
-    <button onclick='addStrokeAndRefresh("q")'> "横折折折 ㇎" </button> 
-    <button onclick='addStrokeAndRefresh("w")'> "横撇弯钩 ㇌ 横折折折钩 𠄎" </button>     
+    <button onclick='addStrokeAndRefresh("btn_u", "u")' id="btn_u"> "竖弯钩 乚 </button> 
+    <button onclick='addStrokeAndRefresh("btn_a", "a")' id="btn_a"> "横折折撇 ㇋" </button> 
+    <button onclick='addStrokeAndRefresh("btn_z", "z")' id="btn_z"> "竖折折钩 ㇉" </button> 
+    <button onclick='addStrokeAndRefresh("btn_q", "q")' id="btn_q"> "横折折折 ㇎" </button> 
+    <button onclick='addStrokeAndRefresh("btn_w", "w")' id="btn_w"> "横撇弯钩 ㇌ 横折折折钩 𠄎" </button>     
+</p>
+
+<p align="center">
+    输入成语，将 URL 发给朋友竞猜！
+    <input type="text" id="input_word" name="txt" minlength="4" maxlength="8" size="16">
+    <input type="button" value="生成" onclick="generateUrl()">
 </p>
 
     </main>

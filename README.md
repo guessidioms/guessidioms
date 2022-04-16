@@ -29,13 +29,14 @@ Then, open in your broswer:
 http://127.0.0.1:7890/
 
 ## Todo
-1. Add explanation to teach people what does the idiom mean
-2. Render guess word for each try in a 6x4 grids like wordle
-3. Guess input support enter to submit
-4. Support generate url link for specified idiom
-5. When input stroke, do not flash the page
-6. Stroke button turns to grey when it is clicked
-7. Add data tracking function, to record user's daily guess results like wordle
+
+- [x] Render guess word for each try in a 6x4 grids like wordle
+- [x] Support generate url link for specified idiom
+- [x] Stroke button turns to grey when it is clicked
+- [ ] Add explanation to teach people what does the idiom mean
+- [ ] Guess input support enter to submit
+- [ ] When input stroke, do not flash the page
+- [ ] Add data tracking function, to record user's daily guess results like wordle
 
 ## Important library
 
