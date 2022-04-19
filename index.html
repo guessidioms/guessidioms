@@ -25,11 +25,6 @@
     <center>
         <table id="chars_table">
             <tr id="chars_placeholder"></tr>
-            <tr id="chars_guess1"></tr>
-            <tr id="chars_guess2"></tr>
-            <tr id="chars_guess3"></tr>
-            <tr id="chars_guess4"></tr>
-            <tr id="chars_guess5"></tr>
         </table>
     </center>
 </p>
@@ -39,10 +34,22 @@
 <script src="static/main.js"></script>
 <script src="static/generate_url.js"></script>
 
+<p id="remain_cnt" align="center">剩余竞猜次数：5</p>
 <p align="center">
     竞猜：
     <input type="text" id="guess" name="txt" minlength="4" maxlength="8" size="16">
     <input type="button" value="提交" onclick="evalGuess()">
+</p>
+<p>
+    <center>
+        <table>
+            <tr id="chars_guess1"></tr>
+            <tr id="chars_guess2"></tr>
+            <tr id="chars_guess3"></tr>
+            <tr id="chars_guess4"></tr>
+            <tr id="chars_guess5"></tr>
+        </table>
+    </center>
 </p>
 
 <p align="center">
