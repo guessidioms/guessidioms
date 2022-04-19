@@ -5,6 +5,7 @@ var currGuess = 0
 const maxGuess = 5
 const highColor = "#FF4500"
 const defaultColor = "#555"
+var isClick = 0
 getWordFromUrl().then(renderGuess(4, maxGuess))
 
 function codeToWord(code) {
@@ -128,23 +129,35 @@ function renderMatchedStrokes(chars, strokes, id, matchedColor = null, unmatched
 }
 
 function addStrokeAndRefresh(id, stroke) {
-    var btn = document.getElementById(id)
-    btn.style.backgroundColor = "#7FFFD4"
-    clickedStrokes.push(stroke)
-    renderMatchedStrokes(idiom, clickedStrokes, placeholder, matchedColor = defaultColor)
+    if(currGuess < maxGuess) {
+        if(isClick == 1){
+            document.getElementById("remain_cnt").innerHTML = "剩余竞猜次数:"+(5-currGuess);
+        }
+        isClick = 1
+        currGuess += 1
+        var btn = document.getElementById(id)
+        btn.style.backgroundColor = "#7FFFD4"
+        clickedStrokes.push(stroke)
+        renderMatchedStrokes(idiom, clickedStrokes, placeholder, matchedColor = defaultColor)
+    } else {
+        window.alert("已达到笔画最大次数！")
+    }
 }
 
 function evalGuess() {
-    var guess=document.getElementById("guess").value;
-    if (guess === idiom) {
-        window.alert("Bingo!!!! Guess NUM:"+clickedStrokes.length)
+    document.getElementById("remain_cnt").innerHTML = "剩余竞猜次数:"+(5-currGuess);
+    if(isClick == 0){
+        currGuess += 1
+    }
+    if (currGuess > maxGuess) {
+        window.alert("已达到最大猜测次数！正确答案:"+idiom)
     } else {
-        currGuess++
-        if (currGuess > maxGuess) {
-            window.alert("已达到最大猜测次数！")
-        } else {
-            var guessId = "chars_guess" + currGuess
-            renderMatchedStrokes(guess, clickedStrokes, guessId, highColor, defaultColor)
+        var guess = document.getElementById("guess").value;
+        var guessId = "chars_guess" + currGuess
+        isClick = 0
+        renderMatchedStrokes(guess, clickedStrokes, guessId, highColor, defaultColor)
+        if (guess === idiom) {
+            window.alert("猜对了!!!! 猜测次数:" + currGuess)
         }
     }
 }
