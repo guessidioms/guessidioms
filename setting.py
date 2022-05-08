@@ -2,7 +2,7 @@ import os
 
 DEBUG = True
 
-REPO_NAME="moneyword"
+REPO_NAME="guessidioms"
 # Assumes the app is located in the same directory
 # where this file resides
 APP_DIR = os.path.dirname(os.path.abspath(__file__))
