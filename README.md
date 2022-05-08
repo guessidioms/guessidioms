@@ -33,6 +33,8 @@ http://127.0.0.1:7890/
 - [x] Render guess word for each try in a 6x4 grids like wordle
 - [x] Support generate url link for specified idiom
 - [x] Stroke button turns to grey when it is clicked
+- [x] Transfer this repo to a github organization
+- [x] Mobile device adaptation
 - [ ] Add explanation to teach people what does the idiom mean
 - [ ] Guess input support enter to submit
 - [ ] When input stroke, do not flash the page
