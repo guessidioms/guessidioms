@@ -6,7 +6,13 @@ const maxGuess = 5
 const highColor = "#FF4500"
 const defaultColor = "#555"
 var isClick = 0
-getWordFromUrl().then(renderGuess(4, maxGuess))
+var mobileWidth = 400
+
+// initial
+getWordFromUrl().then(renderGuess(idiom.length, 1))
+if (deviceType() == "mobile") {
+    fitToFullWidth()
+}
 
 function codeToWord(code) {
     var bytes = []
@@ -160,4 +166,28 @@ function evalGuess() {
             window.alert("猜对了!!!! 猜测次数:" + currGuess)
         }
     }
+}
+
+function setViewPointScala(scala) {
+    var view = document.getElementById("viewport-meta")
+    view.content = "width=device-width, initial-scale=" + scala.toString()
+}
+
+function deviceType() {
+    const ua = navigator.userAgent;
+    const mobile = /Mobile|Android|iP(hone|od)|IEMobile|BlackBerry|Kindle|Silk-Accelerated|(hpw|web)OS|Opera M(obi|ini)/
+    const tablet = /(tablet|ipad|playbook|silk)|(android(?!.*mobi))/
+    if (tablet.test(ua)) {
+        return "tablet";
+    } else if (mobile.test(ua)) {
+        return "mobile";
+    }
+    return "desktop";
+};
+
+function fitToFullWidth() {
+    var innerWidth = window.innerWidth
+    var scala = innerWidth / mobileWidth
+    console.log("scala:" + scala.toString())
+    setViewPointScala(scala)
 }
