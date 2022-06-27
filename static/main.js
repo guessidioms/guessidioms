@@ -137,7 +137,7 @@ function renderMatchedStrokes(chars, strokes, id, matchedColor = null, unmatched
 function addStrokeAndRefresh(id, stroke) {
     if(currGuess < maxGuess) {
         if(isClick == 1){
-            document.getElementById("remain_cnt").innerHTML = "剩余竞猜次数:"+(5-currGuess);
+            document.getElementById("remain_cnt").innerHTML = "剩余竞猜次数:"+Math.max(0,(5-currGuess));
         }
         isClick = 1
         currGuess += 1
@@ -151,7 +151,7 @@ function addStrokeAndRefresh(id, stroke) {
 }
 
 function evalGuess() {
-    document.getElementById("remain_cnt").innerHTML = "剩余竞猜次数:"+(5-currGuess);
+    document.getElementById("remain_cnt").innerHTML = "剩余竞猜次数:"+Math.max(0,(5-currGuess));
     if(isClick == 0){
         currGuess += 1
     }
