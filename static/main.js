@@ -30,7 +30,7 @@ async function getWordFromUrl() {
     if(params.get("code")) {
         idiom = codeToWord(params.get("code"))
     } else {
-        var idiomsResponse = await fetch('static/idioms_reviewed.txt')
+        var idiomsResponse = await fetch('static/idioms_reviewed.html')
         if (idiomsResponse.status !== 200) {
             console.log('Fail to fetch idioms, Status Code: ' + idiomsResponse.status);
         }
