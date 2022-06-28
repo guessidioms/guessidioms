@@ -51,3 +51,15 @@ Please search "renderFanningStrokes" in this page.
 Stroke name data is from,
 
 https://theajack.gitee.io/cnchar/doc/order.html
+
+## Deploy on gitee
+
+Please create the repo and update your ssh key at first.
+
+It's better to use ssh key for managing multiple remote.
+
+```sh
+git remote add gitee git@gitee.com:hardwo/guessidioms.git
+git push --set-upstream gitee main
+# git push gitee && git push origin
+```
