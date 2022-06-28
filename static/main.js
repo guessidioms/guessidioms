@@ -37,7 +37,7 @@ async function getWordFromUrl() {
         var idiomsData = await idiomsResponse.text()
         var idiomsArray = idiomsData.split("\n")
         var index = Math.floor(Math.random() * idiomsArray.length)
-        idiom = idiomsArray[index]
+        idiom = codeToWord(idiomsArray[index])
     }
     renderMatchedStrokes(idiom, clickedStrokes, placeholder)
 }
