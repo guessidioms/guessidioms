@@ -1,5 +1,5 @@
 # usage: bash commit.sh -am 'comments'
 
-python freeze.py
+python tools/freeze.py
 git add --all
 git commit "$@"

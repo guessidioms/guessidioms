@@ -1,18 +1,20 @@
-## Static Model
+## Todo
 
-The app can run in static model now, so it can be deployed on github pages.
+### v1.0
 
-To commit, you must run
+- [x] Render guess word for each try in a 6x4 grids like wordle
+- [x] Support generate url link for specified idiom
+- [x] Stroke button turns to grey when it is clicked
+- [x] Transfer this repo to a github organization
+- [x] Mobile device adaptation
 
-    python freeze.py
+### v2.0
 
-to generate the rendered `index.html` file. And then, push this repo, and open github pages in your github repo setting, and then you can access this app on
-
-    https://<your_github_username>.github.io/guessidioms/
-
-If you access the the URL above, you would get a random word to guess. Or you can set the "code" by,
-
-    https://<your_github_username>.github.io/guessidioms/?code=E79BB8E6BFA1E4BBA5E6B2AB
+- [ ] Nav bar v2.0: Help, Dark, Title, Stat, Share (text)
+- [ ] Better UI: 5*4 Grid, When input stroke, do not flash the page
+- [ ] Beautify Buttons
+- [ ] Help Page: Add explanation to teach people what does the idiom mean
+- [ ] Stat Page: Add data tracking function, to record user's daily guess results like wordle
 
 ## Usage
 
@@ -28,17 +30,21 @@ Then, open in your broswer:
 
 http://127.0.0.1:7890/
 
-## Todo
+## Static Model
 
-- [x] Render guess word for each try in a 6x4 grids like wordle
-- [x] Support generate url link for specified idiom
-- [x] Stroke button turns to grey when it is clicked
-- [x] Transfer this repo to a github organization
-- [x] Mobile device adaptation
-- [ ] Add explanation to teach people what does the idiom mean
-- [ ] Guess input support enter to submit
-- [ ] When input stroke, do not flash the page
-- [ ] Add data tracking function, to record user's daily guess results like wordle
+The app can run in static model now, so it can be deployed on github pages.
+
+To commit, you must run
+
+    python tools/freeze.py
+
+This command will report an error. But it doesn't matter. To generate the rendered `index.html` file. And then, push this repo, and open github pages in your github repo setting, and then you can access this app on
+
+    https://<your_github_username>.github.io/guessidioms/
+
+If you access the the URL above, you would get a random word to guess. Or you can set the "code" by,
+
+    https://<your_github_username>.github.io/guessidioms/?code=E79BB8E6BFA1E4BBA5E6B2AB
 
 ## Important library
 
@@ -52,14 +58,3 @@ Stroke name data is from,
 
 https://theajack.gitee.io/cnchar/doc/order.html
 
-## Deploy on gitee
-
-Please create the repo and update your ssh key at first.
-
-It's better to use ssh key for managing multiple remote.
-
-```sh
-git remote add gitee git@gitee.com:hardwo/guessidioms.git
-git push --set-upstream gitee main
-# git push gitee && git push origin
-```
