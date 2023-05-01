@@ -2,25 +2,38 @@
 <html>
 
 <head>
-        <meta charset="utf-8">
-        <meta name="viewport" id="viewport-meta" content="width=device-width, initial-scale=1.0">
-        <title>Money 猜成语</title>
-        <link rel="icon" type="image/x-icon" href="/guessidioms/static/favicon.ico">
-            <link rel="stylesheet" type="text/css" href="/guessidioms/static/style.css">
+    <meta charset="utf-8">
+    <meta name="viewport" id="viewport-meta" content="width=device-width, initial-scale=1.0">
+    <title>Money 猜成语</title>
+    <link rel="icon" type="image/x-icon" href="/guessidioms/static/favicon.ico">
+    <link rel="stylesheet" type="text/css" href="/guessidioms/static/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/hanzi-writer@3.2/dist/hanzi-writer.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/cnchar-all/cnchar.all.min.js"></script>
+    <script src="static/generate_url.js"></script>
+    <script src="static/overlay.js"></script>
+    <script src="static/layout.js"></script>
+    <script src="static/main.js"></script>
+    
 </head>
 
 <body>
-
-    <nav>
-        <ul><li><a href="/guessidioms/">Home</a></li></ul>
+    <nav class="navbar">
+        <div class="icon-container icon-container-left">
+            <i class="fa-solid fa-question" id="help-icon" onclick="showOverlay('help-overlay')"></i>
+            <!-- <i class="fa-solid fa-moon"></i> -->
+        </div>
+        <div class="title-container">
+            <h1 class="navbar-title">象形成语</h1>
+        </div>
+        <div class="icon-container icon-container-right">
+            <i class="fa-solid fa-chart-column" id="stat-icon" onclick="showOverlay('stat-overlay')"></i>
+            <i class="fa-solid fa-share-from-square" id="share-icon" onclick="showOverlay('share-overlay')"></i>
+        </div>
     </nav>
 
     <main>
-
-
-<h1 align="center"> Money 猜成语 </h1>
-
-<p align="center"> 点击笔画，猜成语！</p>
 
 <p>
     <center>
@@ -29,11 +42,6 @@
         </table>
     </center>
 </p>
-
-<script src="https://cdn.jsdelivr.net/npm/hanzi-writer@3.2/dist/hanzi-writer.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/cnchar-all/cnchar.all.min.js"></script>
-<script src="static/main.js"></script>
-<script src="static/generate_url.js"></script>
 
 <p id="remain_cnt" align="center">剩余竞猜次数：5</p>
 <p align="center">
@@ -58,7 +66,7 @@
     <button onclick='addStrokeAndRefresh("btn_d", "d")' id="btn_d" style="font-size:13px"> "点（反向） ㇀" </button>
     <button onclick='addStrokeAndRefresh("btn_j", "j")' id="btn_j" style="font-size:13px"> "横 一" </button>
     <button onclick='addStrokeAndRefresh("btn_f", "f")' id="btn_f" style="font-size:13px"> "竖 丨" </button>
-    <br/>
+    <br />
     <button onclick='addStrokeAndRefresh("btn_s", "s")' id="btn_s" style="font-size:13px"> "撇 丿" </button>
     <button onclick='addStrokeAndRefresh("btn_l", "l")' id="btn_l" style="font-size:13px"> "捺 ㇏" </button>
     <button onclick='addStrokeAndRefresh("btn_i", "i")' id="btn_i" style="font-size:13px"> "提 ㇀" </button>
@@ -70,11 +78,11 @@
     <button onclick='addStrokeAndRefresh("btn_g", "g")' id="btn_g" style="font-size:13px"> "竖钩 亅" </button>
     <button onclick='addStrokeAndRefresh("btn_n", "n")' id="btn_n" style="font-size:13px"> "撇折 𠃋" </button>
     <button onclick='addStrokeAndRefresh("btn_t", "t")' id="btn_t" style="font-size:13px"> "弯钩 ㇁" </button>
-    <br/>
+    <br />
     <button onclick='addStrokeAndRefresh("btn_y", "y")' id="btn_y" style="font-size:13px"> "斜钩 ㇂ 卧钩 ㇃" </button>
     <button onclick='addStrokeAndRefresh("btn_e", "e")' id="btn_e" style="font-size:13px"> "横撇 ㇇ 横钩 乛" </button>
     <button onclick='addStrokeAndRefresh("btn_h", "h")' id="btn_h" style="font-size:13px"> "竖提 𠄌" </button>
-    <br/>
+    <br />
     <button onclick='addStrokeAndRefresh("btn_m", "m")' id="btn_m" style="font-size:13px"> "撇点 𡿨" </button>
     <button onclick='addStrokeAndRefresh("btn_r", "r")' id="btn_r" style="font-size:13px"> "横折钩 𠃌" </button>
     <button onclick='addStrokeAndRefresh("btn_x", "x")' id="btn_x" style="font-size:13px"> "竖折撇 ㄣ 竖折折 𠃑" </button>
@@ -84,28 +92,56 @@
     <button onclick='addStrokeAndRefresh("btn_o", "o")' id="btn_o" style="font-size:13px"> "横斜钩 ⺄" </button>
     <button onclick='addStrokeAndRefresh("btn_v", "v")' id="btn_v" style="font-size:13px"> "横折折 ㇅ 横折弯 ㇍" </button>
     <button onclick='addStrokeAndRefresh("btn_p", "p")' id="btn_p" style="font-size:13px"> "横折提 ㇊" </button>
-    <br/>
+    <br />
     <button onclick='addStrokeAndRefresh("btn_u", "u")' id="btn_u" style="font-size:13px"> "竖弯钩 乚 </button>
     <button onclick='addStrokeAndRefresh("btn_a", "a")' id="btn_a" style="font-size:13px"> "横折折撇 ㇋" </button>
     <button onclick='addStrokeAndRefresh("btn_z", "z")' id="btn_z" style="font-size:13px"> "竖折折钩 ㇉" </button>
-    <br/>
+    <br />
     <button onclick='addStrokeAndRefresh("btn_q", "q")' id="btn_q" style="font-size:13px"> "横折折折 ㇎" </button>
     <button onclick='addStrokeAndRefresh("btn_w", "w")' id="btn_w" style="font-size:13px"> "横撇弯钩 ㇌ 横折折折钩 𠄎" </button>
 </p>
 
-<p align="center">
-    输入成语，将 URL 发给朋友竞猜！
-    <br/>
-    <input type="text" id="input_word" name="txt" minlength="4" maxlength="8" size="16" style="width:150px;height:20px;">
-    <input type="button" value="生成" onclick="generateUrl()">
-</p>
+<div id="share-overlay" class="overlay hidden">
+    <div class="overlay-content">
+        <p align="center">
+            输入成语，将 URL 发给朋友竞猜！
+            <br />
+            <input type="text" id="input_word" name="txt" minlength="4" maxlength="8" size="16"
+                style="width:150px;height:20px;">
+            <input type="button" value="生成" onclick="generateUrl()">
+            <br />
+            <input type="button" value="关闭" onclick="hideOverlay('share-overlay')">
+        </p>
+    </div>
+</div>
+
+<div id="help-overlay" class="overlay hidden">
+    <div class="overlay-content">
+        <p align="center">
+            这是一个临时的帮助页面。
+            <br>
+            <input type="button" value="关闭" onclick="hideOverlay('help-overlay')">
+        </p>
+    </div>
+</div>
+
+<div id="stat-overlay" class="overlay hidden">
+    <div class="overlay-content">
+        <p align="center">
+            这是一个临时的战绩统计页面。
+            <br>
+            <input type="button" value="关闭" onclick="hideOverlay('stat-overlay')">
+        </p>
+    </div>
+</div>
 
     </main>
 
     <footer>
-            <small> &copy; 2022 plus2047 </small>
+        <small> &copy; 2022 plus2047 </small>
     </footer>
 
 
 </body>
+
 </html>
