@@ -10,7 +10,7 @@
 
 ### v2.0
 
-- [ ] Nav bar v2.0: Help, Dark, Title, Stat, Share (text)
+- [ ] Nav bar v2.0: Help, Dark, Title, Stat, Share
 - [ ] Better UI: 5*4 Grid, When input stroke, do not flash the page
 - [ ] Beautify Buttons
 - [ ] Help Page: Add explanation to teach people what does the idiom mean

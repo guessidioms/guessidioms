@@ -3,28 +3,47 @@ body {
     max-width: 400;
 }
 
-nav ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     background-color: #333;
+    padding: 10px;
 }
 
-nav li {
-    float: left;
+.icon-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
 }
 
-nav li a {
-    display: block;
-    color: white;
+.icon-container-left {
+    justify-content: flex-start;
+}
+
+.icon-container-right {
+    justify-content: flex-end;
+}
+
+.title-container {
+    flex: 2;
     text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
 }
 
-nav li a:hover {
-    background-color: #111;
+.navbar-title {
+    margin: 0;
+    color: #fff;
+}
+
+.navbar i {
+    color: #fff;
+    cursor: pointer;
+    margin: 0 10px;
+}
+
+.navbar i:hover {
+    color: #ddd;
 }
 
 main {

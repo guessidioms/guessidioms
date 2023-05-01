@@ -3,32 +3,42 @@
 
 <head>
     {% block head %}
-        <meta charset="utf-8">
-        <meta name="viewport" id="viewport-meta" content="width=device-width, initial-scale=1.0">
-        <title>{% block title %}Money 猜成语{% endblock %}</title>
-        <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='favicon.ico') }}">
-        {% block styles %}
-            <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css' ) }}">
-        {% endblock %}
+    <meta charset="utf-8">
+    <meta name="viewport" id="viewport-meta" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Money 猜成语{% endblock %}</title>
+    <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='favicon.ico') }}">
+    {% block styles %}
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css' ) }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    {% endblock %}
     {% endblock %}
 </head>
 
 <body>
-
-    <nav>
-        <ul><li><a href="{{ url_for('index') }}">Home</a></li></ul>
+    <nav class="navbar">
+        <div class="icon-container icon-container-left">
+            <i class="fa-solid fa-question"></i>
+            <!-- <i class="fa-solid fa-moon"></i> -->
+        </div>
+        <div class="title-container">
+            <h1 class="navbar-title">象形成语</h1>
+        </div>
+        <div class="icon-container icon-container-right">
+            <i class="fa-solid fa-chart-column"></i>
+            <i class="fa-solid fa-share-from-square"></i>
+        </div>
     </nav>
 
     <main>
         {% for message in get_flashed_messages() %}
-            <div class="alert">{{ message }}</div>
+        <div class="alert">{{ message }}</div>
         {% endfor %}
         {% block content %}{% endblock %}
     </main>
 
     <footer>
         {% block footer %}
-            <small> &copy; 2022 plus2047 </small>
+        <small> &copy; 2022 plus2047 </small>
         {% endblock %}
     </footer>
 
@@ -36,4 +46,5 @@
     {% endblock %}
 
 </body>
+
 </html>
