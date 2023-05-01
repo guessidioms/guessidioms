@@ -10,11 +10,12 @@
 
 ### v2.0
 
-- [ ] Nav bar v2.0: Help, Dark, Title, Stat, Share
+- [x] Nav bar v2.0: Help, Dark, Title, Stat, Share
 - [ ] Better UI: 5*4 Grid, When input stroke, do not flash the page
 - [ ] Beautify Buttons
-- [ ] Help Page: Add explanation to teach people what does the idiom mean
+- [ ] Share Page
 - [ ] Stat Page: Add data tracking function, to record user's daily guess results like wordle
+- [ ] Help Page: Add explanation to teach people what does the idiom mean
 
 ## Usage
 

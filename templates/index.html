@@ -12,11 +12,6 @@
     </center>
 </p>
 
-<script src="https://cdn.jsdelivr.net/npm/hanzi-writer@3.2/dist/hanzi-writer.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/cnchar-all/cnchar.all.min.js"></script>
-<script src="static/main.js"></script>
-<script src="static/generate_url.js"></script>
-
 <p id="remain_cnt" align="center">剩余竞猜次数：5</p>
 <p align="center">
     竞猜：
@@ -75,12 +70,38 @@
     <button onclick='addStrokeAndRefresh("btn_w", "w")' id="btn_w" style="font-size:13px"> "横撇弯钩 ㇌ 横折折折钩 𠄎" </button>
 </p>
 
-<p align="center">
-    输入成语，将 URL 发给朋友竞猜！
-    <br />
-    <input type="text" id="input_word" name="txt" minlength="4" maxlength="8" size="16"
-        style="width:150px;height:20px;">
-    <input type="button" value="生成" onclick="generateUrl()">
-</p>
+<div id="share-overlay" class="overlay hidden">
+    <div class="overlay-content">
+        <p align="center">
+            输入成语，将 URL 发给朋友竞猜！
+            <br />
+            <input type="text" id="input_word" name="txt" minlength="4" maxlength="8" size="16"
+                style="width:150px;height:20px;">
+            <input type="button" value="生成" onclick="generateUrl()">
+            <br />
+            <input type="button" value="关闭" onclick="hideOverlay('share-overlay')">
+        </p>
+    </div>
+</div>
+
+<div id="help-overlay" class="overlay hidden">
+    <div class="overlay-content">
+        <p align="center">
+            这是一个临时的帮助页面。
+            <br>
+            <input type="button" value="关闭" onclick="hideOverlay('help-overlay')">
+        </p>
+    </div>
+</div>
+
+<div id="stat-overlay" class="overlay hidden">
+    <div class="overlay-content">
+        <p align="center">
+            这是一个临时的战绩统计页面。
+            <br>
+            <input type="button" value="关闭" onclick="hideOverlay('stat-overlay')">
+        </p>
+    </div>
+</div>
 
 {% endblock %}

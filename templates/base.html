@@ -11,21 +11,28 @@
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css' ) }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     {% endblock %}
+
+    <script src="https://cdn.jsdelivr.net/npm/hanzi-writer@3.2/dist/hanzi-writer.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/cnchar-all/cnchar.all.min.js"></script>
+    <script src="static/generate_url.js"></script>
+    <script src="static/main.js"></script>
+    <script src="static/overlay.js"></script>
+
     {% endblock %}
 </head>
 
 <body>
     <nav class="navbar">
         <div class="icon-container icon-container-left">
-            <i class="fa-solid fa-question"></i>
+            <i class="fa-solid fa-question" id="help-icon" onclick="showOverlay('help-overlay')"></i>
             <!-- <i class="fa-solid fa-moon"></i> -->
         </div>
         <div class="title-container">
             <h1 class="navbar-title">象形成语</h1>
         </div>
         <div class="icon-container icon-container-right">
-            <i class="fa-solid fa-chart-column"></i>
-            <i class="fa-solid fa-share-from-square"></i>
+            <i class="fa-solid fa-chart-column" id="stat-icon" onclick="showOverlay('stat-overlay')"></i>
+            <i class="fa-solid fa-share-from-square" id="share-icon" onclick="showOverlay('share-overlay')"></i>
         </div>
     </nav>
 
