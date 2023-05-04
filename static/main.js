@@ -1,29 +1,29 @@
 const maxGuess = 5
 const highColor = "#FF4500"
 const defaultColor = "#555"
+
 var clickedStrokes = []
 var idiom = ""
 var placeholder = "chars_placeholder"
 var currGuess = 0
 var isClick = 0
 
-// initial
-getWordFromUrl().then(renderGuess(idiom.length, 1))
-
+// convert a hex string to a word
 function codeToWord(code) {
     var bytes = []
     var n = code.length
-    for(var i = 0; i < n; i += 2) {
+    for (var i = 0; i < n; i += 2) {
         var x = code.substr(i, 2)
         bytes.push(parseInt(x, 16))
     }
     return new TextDecoder().decode(Uint8Array.from(bytes))
 }
 
+// get word from the url or randomly generate a word if the url donot contains "code"
 async function getWordFromUrl() {
     var searchStr = window.location.search
     var params = new URLSearchParams(searchStr)
-    if(params.get("code")) {
+    if (params.get("code")) {
         idiom = codeToWord(params.get("code"))
     } else {
         var idiomsResponse = await fetch('static/idioms_reviewed.html')
@@ -38,102 +38,11 @@ async function getWordFromUrl() {
     renderMatchedStrokes(idiom, clickedStrokes, placeholder)
 }
 
-async function renderGuess(charNum, guessNum) {
-    for (var guess = 1; guess <= guessNum; guess++) {
-        var id = "chars_guess" + guess
-        var target = document.getElementById(id)
-        for (var i = 0; i < charNum; i++) {
-            var cell = document.createElement("td")
-            var cellId = id + "_" + i
-            cell.setAttribute("id", cellId)
-            fillInCellWithSvg(cell)
-            target.appendChild(cell)
-        }    
-    }
-}
-
-function fillInCellWithSvg(cell) {
-    var svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
-    svg.style.width = '75px';
-    svg.style.height = '75px';
-    svg.style.border = '1px solid #EEE'
-    svg.style.marginRight = '3px'
-    cell.appendChild(svg);
-    return svg
-}
-
-function renderFanningStrokes(target, strokes, colors) {
-    var svg = fillInCellWithSvg(target)
-    var group = document.createElementNS('http://www.w3.org/2000/svg', 'g');
-    svg.appendChild(group);
-
-    // set the transform property on the g element so the character renders at 75x75
-    var transformData = HanziWriter.getScalingTransform(75, 75);
-    group.setAttributeNS(null, 'transform', transformData.transform);
-
-    for (var i = 0; i < strokes.length; i++) {
-        var path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
-        path.setAttributeNS(null, 'd', strokes[i]);
-        // style the character paths
-        path.style.fill = colors[i];
-        group.appendChild(path);
-
-    }
-}
-
-function renderStrokes(chars, strokes, id, matchedColor = null, unmatchedColor = null) {
-    var target = document.getElementById(id);
-    function renderChar (i, cellId) {
-        var thisStrokes = strokes[i]
-        var thisChar = chars[i]
-        var strokeName = cnchar.stroke(thisChar, 'order')[0];
-        HanziWriter.loadCharacterData(thisChar).then(function(charData) {
-            if(strokeName.length != charData.strokes.length) {
-                alert("inner data mismatch, stroke name length != char data length")
-                return
-            }
-            var target = document.getElementById(cellId);
-            var strokes = []
-            var colors = []
-            for (var i = 0; i < charData.strokes.length; i++) {
-                var thisStroke = charData.strokes[i]
-                var strokeMatched = thisStrokes.includes(strokeName[i])
-                if(strokeMatched && matchedColor) {
-                    strokes.push(thisStroke)
-                    colors.push(matchedColor)
-                }
-                if(!strokeMatched && unmatchedColor){
-                    strokes.push(thisStroke)
-                    colors.push(unmatchedColor)
-                }
-            }
-            renderFanningStrokes(target, strokes, colors);
-        });            
-    }
-    while(target.firstChild) {
-        target.removeChild(target.firstChild)
-    }
-    for (var i = 0; i < chars.length; i++) {
-        var cell = document.createElement("td")
-        var cellId = id + "_" + i
-        cell.setAttribute("id", cellId)
-        target.appendChild(cell)
-        renderChar(i, cellId)
-    }
-}
-
-function renderMatchedStrokes(chars, strokes, id, matchedColor = null, unmatchedColor = null) {
-    var strokesEachChar = []
-    for(var i = 0; i < chars.length; i++) {
-        strokesEachChar.push(strokes)
-    }
-    renderStrokes(chars, strokesEachChar, id, matchedColor, unmatchedColor)
-}
-
+// hander for the stroke buttons click event
 function addStrokeAndRefresh(id, stroke) {
-    if(currGuess < maxGuess) {
-        if(isClick == 1){
-            document.getElementById("remain_cnt").innerHTML = "剩余竞猜次数:"+Math.max(0,(5-currGuess));
+    if (currGuess < maxGuess) {
+        if (isClick == 1) {
+            document.getElementById("remain_cnt").innerHTML = "剩余竞猜次数:" + Math.max(0, (5 - currGuess));
         }
         isClick = 1
         currGuess += 1
@@ -146,13 +55,14 @@ function addStrokeAndRefresh(id, stroke) {
     }
 }
 
+// handler for the guess input event
 function evalGuess() {
-    document.getElementById("remain_cnt").innerHTML = "剩余竞猜次数:"+Math.max(0,(5-currGuess));
-    if(isClick == 0){
+    document.getElementById("remain_cnt").innerHTML = "剩余竞猜次数:" + Math.max(0, (5 - currGuess));
+    if (isClick == 0) {
         currGuess += 1
     }
     if (currGuess > maxGuess) {
-        window.alert("已达到最大猜测次数！正确答案:"+idiom)
+        window.alert("已达到最大猜测次数！正确答案:" + idiom)
     } else {
         var guess = document.getElementById("guess").value;
         var guessId = "chars_guess" + currGuess
@@ -163,3 +73,6 @@ function evalGuess() {
         }
     }
 }
+
+// initial
+getWordFromUrl()

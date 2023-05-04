@@ -11,14 +11,6 @@
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css' ) }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     {% endblock %}
-
-    <script src="https://cdn.jsdelivr.net/npm/hanzi-writer@3.2/dist/hanzi-writer.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/cnchar-all/cnchar.all.min.js"></script>
-    <script src="static/generate_url.js"></script>
-    <script src="static/overlay.js"></script>
-    <script src="static/layout.js"></script>
-    <script src="static/main.js"></script>
-    
     {% endblock %}
 </head>
 
@@ -51,6 +43,13 @@
     </footer>
 
     {% block scripts %}
+    <script src="https://cdn.jsdelivr.net/npm/hanzi-writer@3.2/dist/hanzi-writer.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/cnchar-all/cnchar.all.min.js"></script>
+    <script src="static/generate_url.js"></script>
+    <script src="static/overlay.js"></script>
+    <script src="static/layout.js"></script>
+    <script src="static/render.js"></script>
+    <script src="static/main.js"></script>
     {% endblock %}
 
 </body>
