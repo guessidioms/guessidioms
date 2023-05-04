@@ -8,14 +8,6 @@
     <link rel="icon" type="image/x-icon" href="/guessidioms/static/favicon.ico">
     <link rel="stylesheet" type="text/css" href="/guessidioms/static/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
-    <script src="https://cdn.jsdelivr.net/npm/hanzi-writer@3.2/dist/hanzi-writer.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/cnchar-all/cnchar.all.min.js"></script>
-    <script src="static/generate_url.js"></script>
-    <script src="static/overlay.js"></script>
-    <script src="static/layout.js"></script>
-    <script src="static/main.js"></script>
-    
 </head>
 
 <body>
@@ -43,12 +35,6 @@
     </center>
 </p>
 
-<p id="remain_cnt" align="center">剩余竞猜次数：5</p>
-<p align="center">
-    竞猜：
-    <input type="text" id="guess" name="txt" minlength="4" maxlength="8" size="16" style="width:150px;height:20px;">
-    <input type="button" value="提交" onclick="evalGuess()">
-</p>
 <p>
     <center>
         <table>
@@ -59,6 +45,12 @@
             <tr id="chars_guess5"></tr>
         </table>
     </center>
+</p>
+
+<p align="center">
+    竞猜：
+    <input type="text" id="guess" name="txt" minlength="4" maxlength="8" size="16" style="width:150px;height:20px;">
+    <input type="button" value="提交" onclick="evalGuess()">
 </p>
 
 <p align="center">
@@ -141,6 +133,13 @@
         <small> &copy; 2022 plus2047 </small>
     </footer>
 
+    <script src="https://cdn.jsdelivr.net/npm/hanzi-writer@3.2/dist/hanzi-writer.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/cnchar-all/cnchar.all.min.js"></script>
+    <script src="static/generate_url.js"></script>
+    <script src="static/overlay.js"></script>
+    <script src="static/layout.js"></script>
+    <script src="static/render.js"></script>
+    <script src="static/main.js"></script>
 
 </body>
 

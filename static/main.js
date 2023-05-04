@@ -1,12 +1,11 @@
 const maxGuess = 5
 const highColor = "#FF4500"
 const defaultColor = "#555"
+const buttonClickedColor = "#7FFFD4"
 
 var clickedStrokes = []
 var idiom = ""
-var placeholder = "chars_placeholder"
 var currGuess = 0
-var isClick = 0
 
 // convert a hex string to a word
 function codeToWord(code) {
@@ -35,21 +34,20 @@ async function getWordFromUrl() {
         var index = Math.floor(Math.random() * idiomsArray.length)
         idiom = codeToWord(idiomsArray[index])
     }
-    renderMatchedStrokes(idiom, clickedStrokes, placeholder)
+    for(var i = 1; i <= maxGuess; i++) {
+        renderMatchedStrokes(idiom, clickedStrokes, "chars_guess" + i)
+    }
 }
 
 // hander for the stroke buttons click event
 function addStrokeAndRefresh(id, stroke) {
     if (currGuess < maxGuess) {
-        if (isClick == 1) {
-            document.getElementById("remain_cnt").innerHTML = "剩余竞猜次数:" + Math.max(0, (5 - currGuess));
-        }
-        isClick = 1
         currGuess += 1
         var btn = document.getElementById(id)
-        btn.style.backgroundColor = "#7FFFD4"
+        btn.style.backgroundColor = buttonClickedColor
         clickedStrokes.push(stroke)
-        renderMatchedStrokes(idiom, clickedStrokes, placeholder, matchedColor = defaultColor)
+        var guessId = "chars_guess" + currGuess
+        renderMatchedStrokes(idiom, clickedStrokes, guessId, matchedColor = defaultColor)
     } else {
         window.alert("已达到笔画最大次数！")
     }
@@ -57,20 +55,16 @@ function addStrokeAndRefresh(id, stroke) {
 
 // handler for the guess input event
 function evalGuess() {
-    document.getElementById("remain_cnt").innerHTML = "剩余竞猜次数:" + Math.max(0, (5 - currGuess));
-    if (isClick == 0) {
+    if (currGuess < maxGuess) {
         currGuess += 1
-    }
-    if (currGuess > maxGuess) {
-        window.alert("已达到最大猜测次数！正确答案:" + idiom)
-    } else {
         var guess = document.getElementById("guess").value;
         var guessId = "chars_guess" + currGuess
-        isClick = 0
         renderMatchedStrokes(guess, clickedStrokes, guessId, highColor, defaultColor)
         if (guess === idiom) {
             window.alert("猜对了!!!! 猜测次数:" + currGuess)
         }
+    } else {
+        window.alert("已达到最大猜测次数！正确答案:" + idiom)
     }
 }
 
