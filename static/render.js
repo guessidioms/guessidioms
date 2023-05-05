@@ -1,10 +1,9 @@
 // fill the cell with an empty svg cell
 function fillInCellWithSvg(cell) {
-    var svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+    const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
     svg.style.width = '75px';
     svg.style.height = '75px';
     svg.style.border = '1px solid #EEE'
-    svg.style.marginRight = '3px'
     cell.appendChild(svg);
     return svg
 }

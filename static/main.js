@@ -36,6 +36,18 @@ async function getWordFromUrl() {
     }
     for(var i = 1; i <= maxGuess; i++) {
         renderMatchedStrokes(idiom, clickedStrokes, "chars_guess" + i)
+        for(var j = 0; j < idiom.length; j++) {
+            // add a event listener to all the td elements
+            var tdId = "chars_guess" + i + "_" + j
+            var td = document.getElementById(tdId)
+            td.addEventListener('click', function (event) {
+                // check if it's a double click
+                // if (event.detail === 2) {
+                //     createInput()
+                // }
+                createInput()
+            })
+        }
     }
 }
 
@@ -54,10 +66,10 @@ function addStrokeAndRefresh(id, stroke) {
 }
 
 // handler for the guess input event
-function evalGuess() {
+function evalGuess(inputId="guess") {
     if (currGuess < maxGuess) {
         currGuess += 1
-        var guess = document.getElementById("guess").value;
+        var guess = document.getElementById(inputId).value;
         var guessId = "chars_guess" + currGuess
         renderMatchedStrokes(guess, clickedStrokes, guessId, highColor, defaultColor)
         if (guess === idiom) {
@@ -66,6 +78,41 @@ function evalGuess() {
     } else {
         window.alert("已达到最大猜测次数！正确答案:" + idiom)
     }
+}
+
+function createInput(inputId="guessInput") {
+    var parentTrId = "chars_guess" + (currGuess + 1)
+    var parentTr = document.getElementById(parentTrId);
+    // clean the tr element
+    while (parentTr.firstChild) {
+        parentTr.removeChild(parentTr.firstChild)
+    }
+    
+    var input = document.createElement('input');
+    input.type = 'text';
+    input.id = inputId;
+    input.style.width = '340px';
+    input.style.height = '75px';
+    input.style.fontSize = '75px';
+    input.style.textAlign = 'center';
+    input.style.border = '1px solid #EEE'
+    // put the input into a td
+    var td = document.createElement('td');
+    td.appendChild(input);
+    // let the td take whole row
+    td.setAttribute("colspan", "4");
+
+    // add an event listener when the user press enter
+    input.addEventListener('keyup', function (event) {
+        if (event.key === "Enter") {
+            event.preventDefault();
+            evalGuess(inputId);
+        }
+    });
+    
+    // put the input into the tr
+    parentTr.appendChild(td);
+    return input;
 }
 
 // initial

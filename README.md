@@ -12,7 +12,10 @@
 
 - [x] Nav bar v2.0: Help, Dark, Title, Stat, Share
 - [x] Better UI: 5*4 Grid
-- [ ] Input in Grid directly
+- [x] Input in Grid directly: double-click or click a button to input
+
+### v2.1
+
 - [ ] When input stroke, do not flash the page
 - [ ] Beautify Buttons
 - [ ] Share Page
