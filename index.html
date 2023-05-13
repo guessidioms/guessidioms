@@ -29,14 +29,6 @@
 
 <p>
     <center>
-        <table id="chars_table">
-            <tr id="chars_placeholder"></tr>
-        </table>
-    </center>
-</p>
-
-<p>
-    <center>
         <table>
             <tr id="chars_guess1"></tr>
             <tr id="chars_guess2"></tr>
@@ -48,49 +40,43 @@
 </p>
 
 <p align="center">
-    竞猜：
-    <input type="text" id="guess" name="txt" minlength="4" maxlength="8" size="16" style="width:150px;height:20px;">
-    <input type="button" value="提交" onclick="evalGuess()">
+    <button onclick='addStroke("btn_k", "k")' id="btn_k" style="font-size:13px"> "点 丶" </button>
+    <button onclick='addStroke("btn_d", "d")' id="btn_d" style="font-size:13px"> "点（反向） ㇀" </button>
+    <button onclick='addStroke("btn_j", "j")' id="btn_j" style="font-size:13px"> "横 一" </button>
+    <button onclick='addStroke("btn_f", "f")' id="btn_f" style="font-size:13px"> "竖 丨" </button>
+    <br />
+    <button onclick='addStroke("btn_s", "s")' id="btn_s" style="font-size:13px"> "撇 丿" </button>
+    <button onclick='addStroke("btn_l", "l")' id="btn_l" style="font-size:13px"> "捺 ㇏" </button>
+    <button onclick='addStroke("btn_i", "i")' id="btn_i" style="font-size:13px"> "提 ㇀" </button>
+    <button onclick='addStroke("btn_b", "b")' id="btn_b" style="font-size:13px"> "竖弯 ㇄" </button>
 </p>
 
 <p align="center">
-    <button onclick='addStrokeAndRefresh("btn_k", "k")' id="btn_k" style="font-size:13px"> "点 丶" </button>
-    <button onclick='addStrokeAndRefresh("btn_d", "d")' id="btn_d" style="font-size:13px"> "点（反向） ㇀" </button>
-    <button onclick='addStrokeAndRefresh("btn_j", "j")' id="btn_j" style="font-size:13px"> "横 一" </button>
-    <button onclick='addStrokeAndRefresh("btn_f", "f")' id="btn_f" style="font-size:13px"> "竖 丨" </button>
+    <button onclick='addStroke("btn_c", "c")' id="btn_c" style="font-size:13px"> "横折 𠃍" </button>
+    <button onclick='addStroke("btn_g", "g")' id="btn_g" style="font-size:13px"> "竖钩 亅" </button>
+    <button onclick='addStroke("btn_n", "n")' id="btn_n" style="font-size:13px"> "撇折 𠃋" </button>
+    <button onclick='addStroke("btn_t", "t")' id="btn_t" style="font-size:13px"> "弯钩 ㇁" </button>
     <br />
-    <button onclick='addStrokeAndRefresh("btn_s", "s")' id="btn_s" style="font-size:13px"> "撇 丿" </button>
-    <button onclick='addStrokeAndRefresh("btn_l", "l")' id="btn_l" style="font-size:13px"> "捺 ㇏" </button>
-    <button onclick='addStrokeAndRefresh("btn_i", "i")' id="btn_i" style="font-size:13px"> "提 ㇀" </button>
-    <button onclick='addStrokeAndRefresh("btn_b", "b")' id="btn_b" style="font-size:13px"> "竖弯 ㇄" </button>
+    <button onclick='addStroke("btn_y", "y")' id="btn_y" style="font-size:13px"> "斜钩 ㇂ 卧钩 ㇃" </button>
+    <button onclick='addStroke("btn_e", "e")' id="btn_e" style="font-size:13px"> "横撇 ㇇ 横钩 乛" </button>
+    <button onclick='addStroke("btn_h", "h")' id="btn_h" style="font-size:13px"> "竖提 𠄌" </button>
+    <br />
+    <button onclick='addStroke("btn_m", "m")' id="btn_m" style="font-size:13px"> "撇点 𡿨" </button>
+    <button onclick='addStroke("btn_r", "r")' id="btn_r" style="font-size:13px"> "横折钩 𠃌" </button>
+    <button onclick='addStroke("btn_x", "x")' id="btn_x" style="font-size:13px"> "竖折撇 ㄣ 竖折折 𠃑" </button>
 </p>
 
 <p align="center">
-    <button onclick='addStrokeAndRefresh("btn_c", "c")' id="btn_c" style="font-size:13px"> "横折 𠃍" </button>
-    <button onclick='addStrokeAndRefresh("btn_g", "g")' id="btn_g" style="font-size:13px"> "竖钩 亅" </button>
-    <button onclick='addStrokeAndRefresh("btn_n", "n")' id="btn_n" style="font-size:13px"> "撇折 𠃋" </button>
-    <button onclick='addStrokeAndRefresh("btn_t", "t")' id="btn_t" style="font-size:13px"> "弯钩 ㇁" </button>
+    <button onclick='addStroke("btn_o", "o")' id="btn_o" style="font-size:13px"> "横斜钩 ⺄" </button>
+    <button onclick='addStroke("btn_v", "v")' id="btn_v" style="font-size:13px"> "横折折 ㇅ 横折弯 ㇍" </button>
+    <button onclick='addStroke("btn_p", "p")' id="btn_p" style="font-size:13px"> "横折提 ㇊" </button>
     <br />
-    <button onclick='addStrokeAndRefresh("btn_y", "y")' id="btn_y" style="font-size:13px"> "斜钩 ㇂ 卧钩 ㇃" </button>
-    <button onclick='addStrokeAndRefresh("btn_e", "e")' id="btn_e" style="font-size:13px"> "横撇 ㇇ 横钩 乛" </button>
-    <button onclick='addStrokeAndRefresh("btn_h", "h")' id="btn_h" style="font-size:13px"> "竖提 𠄌" </button>
+    <button onclick='addStroke("btn_u", "u")' id="btn_u" style="font-size:13px"> "竖弯钩 乚 </button>
+    <button onclick='addStroke("btn_a", "a")' id="btn_a" style="font-size:13px"> "横折折撇 ㇋" </button>
+    <button onclick='addStroke("btn_z", "z")' id="btn_z" style="font-size:13px"> "竖折折钩 ㇉" </button>
     <br />
-    <button onclick='addStrokeAndRefresh("btn_m", "m")' id="btn_m" style="font-size:13px"> "撇点 𡿨" </button>
-    <button onclick='addStrokeAndRefresh("btn_r", "r")' id="btn_r" style="font-size:13px"> "横折钩 𠃌" </button>
-    <button onclick='addStrokeAndRefresh("btn_x", "x")' id="btn_x" style="font-size:13px"> "竖折撇 ㄣ 竖折折 𠃑" </button>
-</p>
-
-<p align="center">
-    <button onclick='addStrokeAndRefresh("btn_o", "o")' id="btn_o" style="font-size:13px"> "横斜钩 ⺄" </button>
-    <button onclick='addStrokeAndRefresh("btn_v", "v")' id="btn_v" style="font-size:13px"> "横折折 ㇅ 横折弯 ㇍" </button>
-    <button onclick='addStrokeAndRefresh("btn_p", "p")' id="btn_p" style="font-size:13px"> "横折提 ㇊" </button>
-    <br />
-    <button onclick='addStrokeAndRefresh("btn_u", "u")' id="btn_u" style="font-size:13px"> "竖弯钩 乚 </button>
-    <button onclick='addStrokeAndRefresh("btn_a", "a")' id="btn_a" style="font-size:13px"> "横折折撇 ㇋" </button>
-    <button onclick='addStrokeAndRefresh("btn_z", "z")' id="btn_z" style="font-size:13px"> "竖折折钩 ㇉" </button>
-    <br />
-    <button onclick='addStrokeAndRefresh("btn_q", "q")' id="btn_q" style="font-size:13px"> "横折折折 ㇎" </button>
-    <button onclick='addStrokeAndRefresh("btn_w", "w")' id="btn_w" style="font-size:13px"> "横撇弯钩 ㇌ 横折折折钩 𠄎" </button>
+    <button onclick='addStroke("btn_q", "q")' id="btn_q" style="font-size:13px"> "横折折折 ㇎" </button>
+    <button onclick='addStroke("btn_w", "w")' id="btn_w" style="font-size:13px"> "横撇弯钩 ㇌ 横折折折钩 𠄎" </button>
 </p>
 
 <div id="share-overlay" class="overlay hidden">

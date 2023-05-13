@@ -16,11 +16,28 @@
 
 ### v2.1
 
-- [ ] When input stroke, do not flash the page
-- [ ] Beautify Buttons
-- [ ] Share Page
+Focus on function improvement.
+
+- [x] [not do]Move most HTML element related logic into HTML files
+- [x] adjust element size
+- [ ] Beautify Buttons (no need to change logic in this stage)
+- [ ] Beautify all pages (background color, font size, etc)
+- [ ] Share Page: generate url
 - [ ] Stat Page: Add data tracking function, to record user's daily guess results like wordle
 - [ ] Help Page: Add explanation to teach people what does the idiom mean
+
+### v2.2
+
+Focus on tech improvement.
+
+- [ ] When input stroke, do not flash the page
+- [ ] Double-check game logic
+
+### v3.0
+
+- [ ] Performance optimization
+- [ ] China mainland deploy
+- [ ] Donate page (static)
 
 ## Usage
 
