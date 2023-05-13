@@ -99,47 +99,39 @@
 
 <div id="share-overlay" class="overlay hidden">
     <div class="overlay-content">
-        <p align="center">
-            输入成语，将 URL 发给朋友竞猜！
-    </div>
-
-    <div class="flex-container">
-        <input type="text" id="input_word" name="txt" minlength="4" maxlength="8" size="16"
-            style="width:150px;height:20px;">
-        <input type="button" value="生成" onclick="generateUrl()">
-    </div>
-
-    <div class="flex-container">
-        <input type="button" value="关闭" onclick="hideOverlay('share-overlay')">
+        <p>输入成语，将 URL 发给朋友竞猜！</p>
+        <p>
+            <input type="text" id="input_word" name="txt" minlength="4" maxlength="20" size="20"
+                style="width:150px;height:20px;">
+        </p>
+        <p>
+            <input type="button" value="生成" onclick="generateUrl()" class="common_btn">
+            <input type="button" value="关闭" onclick="hideOverlay('share-overlay')">
         </p>
     </div>
 </div>
 
 <div id="help-overlay" class="overlay hidden">
     <div class="overlay-content">
-        <p align="center">
-            这是一个临时的帮助页面。
-            <br>
-            <input type="button" value="关闭" onclick="hideOverlay('help-overlay')">
-        </p>
+        <p>这是一个临时的帮助页面。</p>
+        <p><input type="button" value="关闭" onclick="hideOverlay('help-overlay')"></p>
     </div>
 </div>
 
 <div id="stat-overlay" class="overlay hidden">
     <div class="overlay-content">
         <p align="center">
-            这是一个临时的战绩统计页面。
-            <br>
-            <input type="button" value="关闭" onclick="hideOverlay('stat-overlay')">
+            <p>这是一个临时的战绩统计页面。</p>
+            <p><input type="button" value="关闭" onclick="hideOverlay('stat-overlay')"></p>
         </p>
     </div>
 </div>
 
     </main>
 
-    <footer>
+    <!-- <footer>
         <small> &copy; 2022 plus2047 </small>
-    </footer>
+    </footer> -->
 
     <script src="https://cdn.jsdelivr.net/npm/hanzi-writer@3.2/dist/hanzi-writer.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/cnchar-all/cnchar.all.min.js"></script>

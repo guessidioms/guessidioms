@@ -36,8 +36,8 @@ footer {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #333;
     padding: 10px;
+    border-bottom: 1px solid #ccc;
 }
 
 .icon-container {
@@ -62,17 +62,16 @@ footer {
 
 .navbar-title {
     margin: 0;
-    color: #fff;
 }
 
 .navbar i {
-    color: #fff;
+    color: #000;
     cursor: pointer;
     margin: 0 10px;
 }
 
 .navbar i:hover {
-    color: #ddd;
+    color: #000;
 }
 
 /* overlay page related */
@@ -94,6 +93,7 @@ footer {
     padding: 20px;
     border-radius: 10px;
     max-width: 80%;
+    text-align: center;
 }
 
 .hidden {
@@ -109,7 +109,6 @@ footer {
     margin: 3px 3px;
     cursor: pointer;
     font-size: 16px;
-    /* set flex weight to 1 */
     flex: 1;
 }
 
@@ -119,7 +118,6 @@ footer {
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    /* set weight to be 320 */
     max-width: 360px;
     margin: auto;    
 }

@@ -1,7 +1,7 @@
 const maxGuess = 5
-const highColor = "#FF4500"
+const highColor = "#0A0"
 const defaultColor = "#555"
-const buttonClickedColor = "#7FFFD4"
+const buttonClickedColor = "#D0FFD0"
 
 var clickedStrokes = []
 var idiom = ""

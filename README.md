@@ -20,8 +20,8 @@ Focus on function improvement.
 
 - [x] [not do]Move most HTML element related logic into HTML files
 - [x] adjust element size
-- [ ] Beautify Buttons (no need to change logic in this stage)
-- [ ] Beautify all pages (background color, font size, etc)
+- [x] Beautify Buttons (no need to change logic in this stage)
+- [x] Beautify all pages (background color, font size, etc)
 - [ ] Share Page: generate url
 - [ ] Stat Page: Add data tracking function, to record user's daily guess results like wordle
 - [ ] Help Page: Add explanation to teach people what does the idiom mean
