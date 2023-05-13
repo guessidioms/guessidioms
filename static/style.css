@@ -99,3 +99,27 @@ footer {
 .hidden {
     display: none;
 }
+
+/* button related */
+
+.stroke_btn {
+    padding: 6px 6px;
+    border-radius: 0px;
+    border: none;
+    margin: 3px 3px;
+    cursor: pointer;
+    font-size: 16px;
+    /* set flex weight to 1 */
+    flex: 1;
+}
+
+/* set flex container layout */
+.flex-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    /* set weight to be 320 */
+    max-width: 360px;
+    margin: auto;    
+}
