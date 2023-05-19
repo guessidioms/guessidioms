@@ -90,7 +90,13 @@
 
 <div id="help-overlay" class="overlay hidden">
     <div class="overlay-content">
-        <p>这是一个临时的帮助页面。</p>
+        <h2>欢迎挑战象形成语！</h2>
+        <p>这是一个猜词游戏，游戏已经为你选好一个成语作为谜底！请首先点击任意笔画，方格中将会显示谜底成语中所有的该笔画。</p>
+        <img src="static/partial-word.png" alt="谜底成语中的匹配笔画" width="80%">
+        <img src="static/buttons.png" alt="笔画按钮" width="80%">
+        <p>当你认为你可以猜一个成语时，请点击任意一个空白的格子，你将可以输入成语！输入完成后，按回车提交！</p>
+        <p>若猜错，则你输入的成语中，你已经点击的笔画将会以不同的颜色显示，方便比较！</p>
+        <p>选择笔画的总次数和猜测次数是有限的，快来挑战吧！</p>
         <p><input type="button" value="关闭" onclick="hideOverlay('help-overlay')"></p>
     </div>
 </div>
@@ -98,7 +104,7 @@
 <div id="stat-overlay" class="overlay hidden">
     <div class="overlay-content">
         <p align="center">
-            <p>这是一个临时的战绩统计页面。</p>
+            <p>您已猜词 <span id="total-game-count"></span> 次，猜中 <span id="success-game-count"></span> 次，平均每次游戏需要猜测 <span id="average-guess"></span> 次。</p>
             <p><input type="button" value="关闭" onclick="hideOverlay('stat-overlay')"></p>
         </p>
     </div>

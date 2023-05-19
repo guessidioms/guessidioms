@@ -22,9 +22,9 @@ Focus on function improvement.
 - [x] adjust element size
 - [x] Beautify Buttons (no need to change logic in this stage)
 - [x] Beautify all pages (background color, font size, etc)
-- [ ] Share Page: generate url
-- [ ] Stat Page: Add data tracking function, to record user's daily guess results like wordle
-- [ ] Help Page: Add explanation to teach people what does the idiom mean
+- [x] Share Page: generate url
+- [x] Stat Page: Add data tracking function, to record user's daily guess results like wordle
+- [x] Help Page: Add explanation to teach people what does the idiom mean
 
 ### v2.2
 

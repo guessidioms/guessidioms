@@ -3,6 +3,10 @@ const highColor = "#0A0"
 const defaultColor = "#555"
 const buttonClickedColor = "#D0FFD0"
 
+const totalGameCountKey = "total-game-count"
+const successGameCountKey = "success-game-count"
+const totalGuessCountKey = "total-guess-count"
+
 var clickedStrokes = []
 var idiom = ""
 var currGuess = 0
@@ -30,6 +34,9 @@ function evalGuess(inputId = "guess") {
         renderMatchedStrokes(guess, clickedStrokes, guessId, highColor, defaultColor)
         if (guess === idiom) {
             window.alert("猜对了!!!! 猜测次数:" + currGuess)
+            updateCountStorage(successGameCountKey, 1)
+            updateCountStorage(totalGuessCountKey, currGuess)
+            updateAllStatCountElement()
         }
     } else {
         window.alert("已达到最大猜测次数！正确答案:" + idiom)
@@ -45,6 +52,42 @@ function codeToWord(code) {
         bytes.push(parseInt(x, 16))
     }
     return new TextDecoder().decode(Uint8Array.from(bytes))
+}
+
+function updateCountStorage(key, delta) {
+    var count = localStorage.getItem(key)
+    if (count) {
+        count = parseInt(count) + delta
+    } else {
+        count = delta
+    }
+    localStorage.setItem(key, count)
+}
+
+function updateCountElement(key) {
+    var count = localStorage.getItem(key)
+    if (count) {
+        document.getElementById(key).innerHTML = count
+    } else {
+        document.getElementById(key).innerHTML = "0"
+    }
+}
+
+function updateAverageGuessElement() {
+    var totalGuessCount = localStorage.getItem(totalGuessCountKey)
+    var successGameCount = localStorage.getItem(successGameCountKey)
+    if (totalGuessCount && successGameCount) {
+        var averageGuess = totalGuessCount / successGameCount
+        document.getElementById("average-guess").innerHTML = averageGuess.toFixed(2)
+    } else {
+        document.getElementById("average-guess").innerHTML = "0"
+    }
+}
+
+function updateAllStatCountElement() {
+    updateCountElement(totalGameCountKey)
+    updateCountElement(successGameCountKey)
+    updateAverageGuessElement()
 }
 
 // initialization
@@ -76,4 +119,7 @@ function codeToWord(code) {
             td.addEventListener('click', createInput)
         }
     }
+
+    updateCountStorage(totalGameCountKey, 1)
+    updateAllStatCountElement()
 })()

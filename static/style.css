@@ -92,7 +92,8 @@ footer {
     background-color: white;
     padding: 20px;
     border-radius: 10px;
-    max-width: 80%;
+    /* set the max-width to min of 80% or 600px */
+    max-width: min(80%, 600px);
     text-align: center;
 }
 
