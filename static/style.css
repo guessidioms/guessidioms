@@ -1,3 +1,10 @@
+@font-face {
+    font-family: 'fangzheng-kaiti';
+    src: url('https://guessidioms.github.io/guessidioms/static/fangzheng-kaiti.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
 /* basic page */
 
 body {

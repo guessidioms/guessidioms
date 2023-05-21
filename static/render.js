@@ -16,6 +16,7 @@ function createInput(inputId = "guessInput") {
     input.style.border = '1px solid #EEE'
     input.style.margin = '0px';
     input.style.padding = '0px';
+    input.style.fontFamily = 'fangzheng-kaiti';
     // put the input into a td
     var td = document.createElement('td');
     td.appendChild(input);
@@ -37,33 +38,23 @@ function createInput(inputId = "guessInput") {
 
 
 // render the strokes of a character with colors for each stroke
-function renderFanningStrokes(target, strokes, colors) {
-    const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
-    svg.style.width = '75px';
-    svg.style.height = '75px';
-    svg.style.border = '1px solid #EEE'
-    target.appendChild(svg);
-
-    var group = document.createElementNS('http://www.w3.org/2000/svg', 'g');
-    svg.appendChild(group);
-
+function renderFanningStrokes(svgGroup, strokes, colors) {
     // set the transform property on the g element so the character renders at 75x75
     var transformData = HanziWriter.getScalingTransform(75, 75);
-    group.setAttributeNS(null, 'transform', transformData.transform);
+    svgGroup.setAttributeNS(null, 'transform', transformData.transform);
 
     for (var i = 0; i < strokes.length; i++) {
         var path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
         path.setAttributeNS(null, 'd', strokes[i]);
         // style the character paths
         path.style.fill = colors[i];
-        group.appendChild(path);
-
+        svgGroup.appendChild(path);
     }
 }
 
 // render a word with different colors for matched strokes and unmatched strokes
-function renderMatchedStrokes(chars, matchedStrokes, id, matchedColor = null, unmatchedColor = null) {
-    function renderChar(i, cellId) {
+function renderMatchedStrokes(chars, matchedStrokes, rowId, matchedColor = null, unmatchedColor = null) {
+    function renderChar(i, svgGroup) {
         var thisChar = chars[i]
         var strokeName = cnchar.stroke(thisChar, 'order')[0];
         HanziWriter.loadCharacterData(thisChar).then(function (charData) {
@@ -71,7 +62,6 @@ function renderMatchedStrokes(chars, matchedStrokes, id, matchedColor = null, un
                 alert("inner data mismatch, stroke name length != char data length")
                 return
             }
-            var target = document.getElementById(cellId);
             var strokes = []
             var colors = []
             for (var i = 0; i < charData.strokes.length; i++) {
@@ -86,18 +76,42 @@ function renderMatchedStrokes(chars, matchedStrokes, id, matchedColor = null, un
                     colors.push(unmatchedColor)
                 }
             }
-            renderFanningStrokes(target, strokes, colors);
+            renderFanningStrokes(svgGroup, strokes, colors);
         });
     }
-    var target = document.getElementById(id);
-    while (target.firstChild) {
-        target.removeChild(target.firstChild)
+    var row = document.getElementById(rowId);
+    // if the row contains only one cell, clean it's all children
+    // this should be the input textbox
+    if (row.childElementCount == 1) {
+        while (row.firstChild) {
+            row.removeChild(row.firstChild)
+        }
     }
     for (var i = 0; i < chars.length; i++) {
-        var cell = document.createElement("td")
-        var cellId = id + "_" + i
-        cell.setAttribute("id", cellId)
-        target.appendChild(cell)
-        renderChar(i, cellId)
+        var svgGroup = document.getElementById(rowId + "_" + i + "_g")
+        // if svgGroup is not created, create it
+        if (!svgGroup) {
+            var cell = document.createElement("td")
+            var cellId = rowId + "_" + i
+            cell.setAttribute("id", cellId)
+            row.appendChild(cell)
+
+            const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+            svg.style.width = '75px';
+            svg.style.height = '75px';
+            svg.style.border = '1px solid #EEE'
+            svg.setAttribute("id", cellId + "_svg")
+            cell.appendChild(svg);
+        
+            svgGroup = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+            svgGroup.setAttribute("id", cellId + "_g")
+            svg.appendChild(svgGroup);
+        } else {
+            // clean the svg group
+            while (svgGroup.firstChild) {
+                svgGroup.removeChild(svgGroup.firstChild)
+            }
+        }
+        renderChar(i, svgGroup)
     }
 }

@@ -17,6 +17,8 @@ function addStroke(id, stroke) {
         currGuess += 1
         var btn = document.getElementById(id)
         btn.style.backgroundColor = buttonClickedColor
+        // disable the button
+        btn.disabled = true
         clickedStrokes.push(stroke)
         var guessId = "chars_guess" + currGuess
         renderMatchedStrokes(idiom, clickedStrokes, guessId, matchedColor = defaultColor)
@@ -37,6 +39,8 @@ function evalGuess(inputId = "guess") {
             updateCountStorage(successGameCountKey, 1)
             updateCountStorage(totalGuessCountKey, currGuess)
             updateAllStatCountElement()
+        } else if (currGuess == maxGuess) {
+            window.alert("已达到最大猜测次数！正确答案:" + idiom)
         }
     } else {
         window.alert("已达到最大猜测次数！正确答案:" + idiom)
@@ -92,7 +96,6 @@ function updateAllStatCountElement() {
 
 // initialization
 (async function () {
-
     // get word from the url or randomly generate a word if the url donot contains "code"
     var searchStr = window.location.search
     var params = new URLSearchParams(searchStr)

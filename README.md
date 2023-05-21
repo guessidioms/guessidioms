@@ -30,8 +30,8 @@ Focus on function improvement.
 
 Focus on tech improvement.
 
-- [ ] When input stroke, do not flash the page
-- [ ] Double-check game logic
+- [x] When input stroke, do not flash the page
+- [x] Double-check game logic
 
 ### v3.0
 
@@ -81,3 +81,4 @@ Stroke name data is from,
 
 https://theajack.gitee.io/cnchar/doc/order.html
 
+$$
